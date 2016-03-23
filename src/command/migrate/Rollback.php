@@ -29,12 +29,12 @@ class Rollback extends AbstractCommand
              ->addOption('--date', '-d', InputOption::VALUE_REQUIRED, 'The date to rollback to')
              ->setHelp(
 <<<EOT
-The <info>rollback</info> command reverts the last migration, or optionally up to a specific version
+The <info>migrate:rollback</info> command reverts the last migration, or optionally up to a specific version
 
-<info>phinx rollback -e development</info>
-<info>phinx rollback -e development -t 20111018185412</info>
-<info>phinx rollback -e development -d 20111018</info>
-<info>phinx rollback -e development -v</info>
+<info>php console migrate:rollback</info>
+<info>php console migrate:rollback -t 20111018185412</info>
+<info>php console migrate:rollback -d 20111018</info>
+<info>php console migrate:rollback -v</info>
 
 EOT
              );
