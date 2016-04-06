@@ -29,7 +29,7 @@
 namespace Phinx\Db\Adapter;
 
 use think\console\Output;
-use think\console\output\Null as NullOutput;
+use think\console\output\Nothing as NothingOutput;
 use Phinx\Db\Table;
 use Phinx\Db\Table\Column;
 use Phinx\Migration\MigrationInterface;
@@ -140,7 +140,7 @@ abstract class PdoAdapter implements AdapterInterface
     public function getOutput()
     {
         if (null === $this->output) {
-            $output = new NullOutput();
+            $output = new NothingOutput();
             $this->setOutput($output);
         }
         return $this->output;
