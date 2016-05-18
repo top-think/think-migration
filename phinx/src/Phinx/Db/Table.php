@@ -559,11 +559,11 @@ class Table
      */
     public function addTimestamps()
     {
-        $this->addColumn('created_at', 'timestamp', array(
+        $this->addColumn('create_time', 'timestamp', array(
                 'default' => 'CURRENT_TIMESTAMP',
                 'update' => ''
             ))
-             ->addColumn('updated_at', 'timestamp', array(
+             ->addColumn('update_time', 'timestamp', array(
                 'null'    => true,
                 'default' => null
              ));
