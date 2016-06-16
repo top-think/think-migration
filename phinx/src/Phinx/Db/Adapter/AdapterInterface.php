@@ -42,34 +42,34 @@ use Phinx\Migration\MigrationInterface;
  */
 interface AdapterInterface
 {
-    const PHINX_TYPE_STRING         = 'string';
-    const PHINX_TYPE_CHAR           = 'char';
-    const PHINX_TYPE_TEXT           = 'text';
-    const PHINX_TYPE_INTEGER        = 'integer';
-    const PHINX_TYPE_BIG_INTEGER    = 'biginteger';
-    const PHINX_TYPE_FLOAT          = 'float';
-    const PHINX_TYPE_DECIMAL        = 'decimal';
-    const PHINX_TYPE_DATETIME       = 'datetime';
-    const PHINX_TYPE_TIMESTAMP      = 'timestamp';
-    const PHINX_TYPE_TIME           = 'time';
-    const PHINX_TYPE_DATE           = 'date';
-    const PHINX_TYPE_BINARY         = 'binary';
-    const PHINX_TYPE_BLOB           = 'blob';
-    const PHINX_TYPE_BOOLEAN        = 'boolean';
-    const PHINX_TYPE_JSON           = 'json';
-    const PHINX_TYPE_JSONB          = 'jsonb';
-    const PHINX_TYPE_UUID           = 'uuid';
-    const PHINX_TYPE_FILESTREAM     = 'filestream';
+    const PHINX_TYPE_STRING      = 'string';
+    const PHINX_TYPE_CHAR        = 'char';
+    const PHINX_TYPE_TEXT        = 'text';
+    const PHINX_TYPE_INTEGER     = 'integer';
+    const PHINX_TYPE_BIG_INTEGER = 'biginteger';
+    const PHINX_TYPE_FLOAT       = 'float';
+    const PHINX_TYPE_DECIMAL     = 'decimal';
+    const PHINX_TYPE_DATETIME    = 'datetime';
+    const PHINX_TYPE_TIMESTAMP   = 'timestamp';
+    const PHINX_TYPE_TIME        = 'time';
+    const PHINX_TYPE_DATE        = 'date';
+    const PHINX_TYPE_BINARY      = 'binary';
+    const PHINX_TYPE_BLOB        = 'blob';
+    const PHINX_TYPE_BOOLEAN     = 'boolean';
+    const PHINX_TYPE_JSON        = 'json';
+    const PHINX_TYPE_JSONB       = 'jsonb';
+    const PHINX_TYPE_UUID        = 'uuid';
+    const PHINX_TYPE_FILESTREAM  = 'filestream';
 
     // Geospatial database types
-    const PHINX_TYPE_GEOMETRY       = 'geometry';
-    const PHINX_TYPE_POINT          = 'point';
-    const PHINX_TYPE_LINESTRING     = 'linestring';
-    const PHINX_TYPE_POLYGON        = 'polygon';
+    const PHINX_TYPE_GEOMETRY   = 'geometry';
+    const PHINX_TYPE_POINT      = 'point';
+    const PHINX_TYPE_LINESTRING = 'linestring';
+    const PHINX_TYPE_POLYGON    = 'polygon';
 
     // only for mysql so far
-    const PHINX_TYPE_ENUM           = 'enum';
-    const PHINX_TYPE_SET            = 'set';
+    const PHINX_TYPE_ENUM = 'enum';
+    const PHINX_TYPE_SET  = 'set';
 
     /**
      * Get all migrated version numbers.
@@ -135,9 +135,9 @@ interface AdapterInterface
      * Records a migration being run.
      *
      * @param MigrationInterface $migration Migration
-     * @param string $direction Direction
-     * @param int $startTime Start Time
-     * @param int $endTime End Time
+     * @param string             $direction Direction
+     * @param int                $startTime Start Time
+     * @param int                $endTime   End Time
      * @return AdapterInterface
      */
     public function migrated(MigrationInterface $migration, $direction, $startTime, $endTime);
@@ -297,6 +297,9 @@ interface AdapterInterface
      */
     public function dropTable($tableName);
 
+
+    public function truncateTable($tableName);
+
     /**
      * Returns table columns
      *
@@ -326,8 +329,8 @@ interface AdapterInterface
     /**
      * Renames the specified column.
      *
-     * @param string $tableName Table Name
-     * @param string $columnName Column Name
+     * @param string $tableName     Table Name
+     * @param string $columnName    Column Name
      * @param string $newColumnName New Column Name
      * @return void
      */
@@ -346,7 +349,7 @@ interface AdapterInterface
     /**
      * Drops the specified column.
      *
-     * @param string $tableName Table Name
+     * @param string $tableName  Table Name
      * @param string $columnName Column Name
      * @return void
      */
@@ -444,7 +447,7 @@ interface AdapterInterface
     /**
      * Converts the Phinx logical type to the adapter's SQL type.
      *
-     * @param string $type
+     * @param string  $type
      * @param integer $limit
      * @return string
      */
@@ -453,11 +456,11 @@ interface AdapterInterface
     /**
      * Creates a new database.
      *
-     * @param string $name Database Name
-     * @param array $options Options
+     * @param string $name    Database Name
+     * @param array  $options Options
      * @return void
      */
-    public function createDatabase($name, $options = array());
+    public function createDatabase($name, $options = []);
 
     /**
      * Checks to see if a database exists.

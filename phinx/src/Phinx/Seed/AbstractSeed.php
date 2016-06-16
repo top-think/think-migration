@@ -180,4 +180,9 @@ abstract class AbstractSeed implements SeedInterface
     {
         return new Table($tableName, $options, $this->getAdapter());
     }
+
+    public function truncateTable($tableName)
+    {
+        $this->table($tableName)->truncate();
+    }
 }

@@ -258,6 +258,14 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
         $this->endCommandTimer();
     }
 
+    public function truncateTable($tableName)
+    {
+        $this->startCommandTimer();
+        $this->writeCommand('truncateTable', array($tableName));
+        $this->execute(sprintf('DELETE FROM %s', $this->quoteTableName($tableName)));
+        $this->endCommandTimer();
+    }
+
     /**
      * {@inheritdoc}
      */

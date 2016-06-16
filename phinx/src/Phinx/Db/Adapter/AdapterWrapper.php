@@ -318,6 +318,11 @@ abstract class AdapterWrapper implements AdapterInterface, WrapperInterface
         return $this->getAdapter()->dropTable($tableName);
     }
 
+    public function truncateTable($tableName)
+    {
+        return $this->getAdapter()->truncateTable($tableName);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -393,7 +398,7 @@ abstract class AdapterWrapper implements AdapterInterface, WrapperInterface
     /**
      * {@inheritdoc}
      */
-    public function dropIndex($tableName, $columns, $options = array())
+    public function dropIndex($tableName, $columns, $options = [])
     {
         return $this->getAdapter()->dropIndex($tableName, $columns, $options);
     }
@@ -441,7 +446,7 @@ abstract class AdapterWrapper implements AdapterInterface, WrapperInterface
     /**
      * {@inheritdoc}
      */
-    public function createDatabase($name, $options = array())
+    public function createDatabase($name, $options = [])
     {
         return $this->getAdapter()->createDatabase($name, $options);
     }

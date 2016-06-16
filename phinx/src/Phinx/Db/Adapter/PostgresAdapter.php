@@ -304,6 +304,14 @@ class PostgresAdapter extends PdoAdapter implements AdapterInterface
         $this->endCommandTimer();
     }
 
+    public function truncateTable($tableName)
+    {
+        $this->startCommandTimer();
+        $this->writeCommand('truncateTable', [$tableName]);
+        $this->execute(sprintf('TRUNCATE TABLE %s restart identity', $this->quoteTableName($tableName)));
+        $this->endCommandTimer();
+    }
+
     /**
      * {@inheritdoc}
      */

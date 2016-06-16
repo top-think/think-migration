@@ -64,12 +64,12 @@ class TablePrefixAdapter extends AdapterWrapper
      */
     public function createTable(Table $table)
     {
-        $adapterTable = clone $table;
+        $adapterTable     = clone $table;
         $adapterTableName = $this->getAdapterTableName($table->getName());
         $adapterTable->setName($adapterTableName);
 
         foreach ($adapterTable->getForeignKeys() as $fk) {
-            $adapterReferenceTable = $fk->getReferencedTable();
+            $adapterReferenceTable     = $fk->getReferencedTable();
             $adapterReferenceTableName = $this->getAdapterTableName($adapterReferenceTable->getName());
             $adapterReferenceTable->setName($adapterReferenceTableName);
         }
@@ -82,7 +82,7 @@ class TablePrefixAdapter extends AdapterWrapper
      */
     public function renameTable($tableName, $newTableName)
     {
-        $adapterTableName = $this->getAdapterTableName($tableName);
+        $adapterTableName    = $this->getAdapterTableName($tableName);
         $adapterNewTableName = $this->getAdapterTableName($newTableName);
         return parent::renameTable($adapterTableName, $adapterNewTableName);
     }
@@ -94,6 +94,12 @@ class TablePrefixAdapter extends AdapterWrapper
     {
         $adapterTableName = $this->getAdapterTableName($tableName);
         return parent::dropTable($adapterTableName);
+    }
+
+    public function truncateTable($tableName)
+    {
+        $adapterTableName = $this->getAdapterTableName($tableName);
+        return parent::truncateTable($adapterTableName);
     }
 
     /**
@@ -119,7 +125,7 @@ class TablePrefixAdapter extends AdapterWrapper
      */
     public function addColumn(Table $table, Column $column)
     {
-        $adapterTable = clone $table;
+        $adapterTable     = clone $table;
         $adapterTableName = $this->getAdapterTableName($table->getName());
         $adapterTable->setName($adapterTableName);
         return parent::addColumn($adapterTable, $column);
@@ -175,7 +181,7 @@ class TablePrefixAdapter extends AdapterWrapper
      */
     public function addIndex(Table $table, Index $index)
     {
-        $adapterTable = clone $table;
+        $adapterTable     = clone $table;
         $adapterTableName = $this->getAdapterTableName($table->getName());
         $adapterTable->setName($adapterTableName);
         return parent::addIndex($adapterTable, $index);
@@ -184,7 +190,7 @@ class TablePrefixAdapter extends AdapterWrapper
     /**
      * {@inheritdoc}
      */
-    public function dropIndex($tableName, $columns, $options = array())
+    public function dropIndex($tableName, $columns, $options = [])
     {
         $adapterTableName = $this->getAdapterTableName($tableName);
         return parent::dropIndex($adapterTableName, $columns, $options);
@@ -213,7 +219,7 @@ class TablePrefixAdapter extends AdapterWrapper
      */
     public function addForeignKey(Table $table, ForeignKey $foreignKey)
     {
-        $adapterTable = clone $table;
+        $adapterTable     = clone $table;
         $adapterTableName = $this->getAdapterTableName($table->getName());
         $adapterTable->setName($adapterTableName);
         return parent::addForeignKey($adapterTable, $foreignKey);
@@ -233,12 +239,12 @@ class TablePrefixAdapter extends AdapterWrapper
      */
     public function insert(Table $table, $row)
     {
-        $adapterTable = clone $table;
+        $adapterTable     = clone $table;
         $adapterTableName = $this->getAdapterTableName($table->getName());
         $adapterTable->setName($adapterTableName);
         return parent::insert($adapterTable, $row);
     }
-    
+
     /**
      * Gets the table prefix.
      *
@@ -246,7 +252,7 @@ class TablePrefixAdapter extends AdapterWrapper
      */
     public function getPrefix()
     {
-        return (string) $this->getOption('table_prefix');
+        return (string)$this->getOption('table_prefix');
     }
 
     /**
@@ -256,7 +262,7 @@ class TablePrefixAdapter extends AdapterWrapper
      */
     public function getSuffix()
     {
-        return (string) $this->getOption('table_suffix');
+        return (string)$this->getOption('table_suffix');
     }
 
     /**
