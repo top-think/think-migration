@@ -10,7 +10,7 @@
 namespace think\migration\command;
 
 use InvalidArgumentException;
-use think\console\command\Command;
+use think\console\Command;
 use think\console\Input;
 use think\console\input\Option as InputOption;
 use think\console\Output;
