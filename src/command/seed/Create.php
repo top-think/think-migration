@@ -15,8 +15,6 @@ use think\console\Input;
 use think\console\Output;
 use think\migration\command\AbstractCommand;
 use think\console\input\Argument as InputArgument;
-use think\console\helper\question\Confirmation as ConfirmationQuestion;
-
 
 class Create extends AbstractCommand
 {
@@ -38,20 +36,9 @@ class Create extends AbstractCommand
     }
 
     /**
-     * Get the confirmation question asking if the user wants to create the
-     * seeds directory.
-     *
-     * @return ConfirmationQuestion
-     */
-    protected function getCreateSeedDirectoryQuestion()
-    {
-        return new ConfirmationQuestion('Create seeds directory? [y]/n ', true);
-    }
-
-    /**
      * Create the new seeder.
      *
-     * @param Input $input
+     * @param Input  $input
      * @param Output $output
      * @throws \RuntimeException
      * @throws \InvalidArgumentException
@@ -65,17 +52,14 @@ class Create extends AbstractCommand
         $path = $this->getConfig()->getSeedPath();
 
         if (!file_exists($path)) {
-            $helper   = $this->getHelper('question');
-            $question = $this->getCreateSeedDirectoryQuestion();
-
-            if ($helper->ask($input, $output, $question)) {
+            if ($output->confirm($input, 'Create seeds directory?')) {
                 mkdir($path, 0755, true);
             }
         }
 
         $this->verifySeedDirectory($path);
 
-        $path = realpath($path);
+        $path      = realpath($path);
         $className = $input->getArgument('name');
 
         if (!Util::isValidPhinxClassName($className)) {
@@ -97,11 +81,11 @@ class Create extends AbstractCommand
 
         // inject the class names appropriate to this seeder
         $contents = file_get_contents($this->getSeedTemplateFilename());
-        $classes = array(
+        $classes  = [
             '$useClassName'  => 'Phinx\Seed\AbstractSeed',
             '$className'     => $className,
             '$baseClassName' => 'AbstractSeed',
-        );
+        ];
         $contents = strtr($contents, $classes);
 
         if (false === file_put_contents($filePath, $contents)) {

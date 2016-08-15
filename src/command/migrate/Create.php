@@ -15,7 +15,6 @@ use think\console\input\Argument as InputArgument;
 use think\console\Input;
 use think\console\input\Option as InputOption;
 use think\console\Output;
-use think\console\helper\question\Confirmation as ConfirmationQuestion;
 use think\migration\command\AbstractCommand;
 
 class Create extends AbstractCommand
@@ -50,20 +49,9 @@ class Create extends AbstractCommand
     }
 
     /**
-     * Get the confirmation question asking if the user wants to create the
-     * migrations directory.
-     *
-     * @return ConfirmationQuestion
-     */
-    protected function getCreateMigrationDirectoryQuestion()
-    {
-        return new ConfirmationQuestion('Create migrations directory? [y]/n ', true);
-    }
-
-    /**
      * Create the new migration.
      *
-     * @param Input $input
+     * @param Input  $input
      * @param Output $output
      * @throws \RuntimeException
      * @throws \InvalidArgumentException
@@ -77,17 +65,14 @@ class Create extends AbstractCommand
         $path = $this->getConfig()->getMigrationPath();
 
         if (!file_exists($path)) {
-            $helper = $this->getHelper('question');
-            $question = $this->getCreateMigrationDirectoryQuestion();
-
-            if ($helper->ask($input, $output, $question)) {
+            if ($output->confirm($input, 'Create migrations directory?')) {
                 mkdir($path, 0755, true);
             }
         }
 
         $this->verifyMigrationDirectory($path);
 
-        $path = realpath($path);
+        $path      = realpath($path);
         $className = $input->getArgument('name');
 
         if (!Util::isValidPhinxClassName($className)) {
@@ -164,19 +149,19 @@ class Create extends AbstractCommand
             // Get the template from the creation class
             /** @var CreationInterface $creationClass */
             $creationClass = new $creationClassName();
-            $contents = $creationClass->getMigrationTemplate();
+            $contents      = $creationClass->getMigrationTemplate();
         } else {
             // Load the alternative template if it is defined.
             $contents = file_get_contents($altTemplate ?: $this->getMigrationTemplateFilename());
         }
 
         // inject the class names appropriate to this migration
-        $classes = array(
-            '$useClassName' => $this->getConfig()->getMigrationBaseClassName(false),
-            '$className' => $className,
-            '$version' => Util::getVersionFromFileName($fileName),
+        $classes  = [
+            '$useClassName'  => $this->getConfig()->getMigrationBaseClassName(false),
+            '$className'     => $className,
+            '$version'       => Util::getVersionFromFileName($fileName),
             '$baseClassName' => $this->getConfig()->getMigrationBaseClassName(true),
-        );
+        ];
         $contents = strtr($contents, $classes);
 
         if (false === file_put_contents($filePath, $contents)) {
