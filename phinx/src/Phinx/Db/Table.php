@@ -565,7 +565,7 @@ class Table
      *
      * @return Table
      */
-    public function addTimestamps($createdAtColumnName = 'created_at', $updatedAtColumnName = 'updated_at')
+    public function addTimestamps($createdAtColumnName = 'create_time', $updatedAtColumnName = 'update_time')
     {
         $createdAtColumnName = is_null($createdAtColumnName) ? 'created_at' : $createdAtColumnName;
         $updatedAtColumnName = is_null($updatedAtColumnName) ? 'updated_at' : $updatedAtColumnName;
