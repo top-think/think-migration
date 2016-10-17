@@ -567,8 +567,8 @@ class Table
      */
     public function addTimestamps($createdAtColumnName = 'create_time', $updatedAtColumnName = 'update_time')
     {
-        $createdAtColumnName = is_null($createdAtColumnName) ? 'created_at' : $createdAtColumnName;
-        $updatedAtColumnName = is_null($updatedAtColumnName) ? 'updated_at' : $updatedAtColumnName;
+        $createdAtColumnName = is_null($createdAtColumnName) ? 'create_time' : $createdAtColumnName;
+        $updatedAtColumnName = is_null($updatedAtColumnName) ? 'update_time' : $updatedAtColumnName;
         $this->addColumn($createdAtColumnName, 'timestamp', array(
                 'default' => 'CURRENT_TIMESTAMP',
                 'update' => ''
