@@ -155,7 +155,7 @@ abstract class AbstractCommand extends Command
         $configFile = $input->getOption('configuration');
 
         if (null === $configFile || false === $configFile) {
-            $configFile = APP_PATH . 'database' . EXT;
+            $configFile = CONF_PATH . 'database' . EXT;
         }
 
         if (!is_file($configFile)) {
