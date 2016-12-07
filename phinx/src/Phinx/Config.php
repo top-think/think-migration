@@ -51,7 +51,7 @@ class Config
     public function __construct($configFile)
     {
         // 加载配置
-        $this->values = include APP_PATH . 'config' . EXT;
+        $this->values = include CONF_PATH . 'config' . EXT;
         //加载数据库配置
         $config = include $configFile;
 
