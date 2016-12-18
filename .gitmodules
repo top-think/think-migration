@@ -1,0 +1,3 @@
+[submodule "phinx"]
+	path = phinx
+	url = https://github.com/robmorgan/phinx.git
