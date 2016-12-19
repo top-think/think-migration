@@ -28,9 +28,9 @@
  */
 namespace Phinx\Db\Adapter;
 
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Output\NullOutput;
+use think\console\Input as InputInterface;
+use think\console\Output as OutputInterface;
+use think\console\output\driver\Nothing as NullOutput;
 use Phinx\Db\Table;
 use Phinx\Db\Table\Column;
 use Phinx\Migration\MigrationInterface;
@@ -167,7 +167,7 @@ abstract class PdoAdapter implements AdapterInterface
     public function getOutput()
     {
         if (null === $this->output) {
-            $output = new NullOutput();
+            $output = new OutputInterface('nothing');
             $this->setOutput($output);
         }
         return $this->output;

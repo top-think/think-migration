@@ -33,8 +33,8 @@ use Phinx\Db\Table\Column;
 use Phinx\Db\Table\Index;
 use Phinx\Db\Table\ForeignKey;
 use Phinx\Migration\MigrationInterface;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use think\console\Input as InputInterface;
+use think\console\Output as OutputInterface;
 
 /**
  * Adapter Wrapper.

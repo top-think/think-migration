@@ -30,8 +30,8 @@ namespace Phinx\Migration;
 
 use Phinx\Db\Table;
 use Phinx\Db\Adapter\AdapterInterface;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use think\console\Input as InputInterface;
+use think\console\Output as OutputInterface;
 
 /**
  * Abstract Migration Class.
