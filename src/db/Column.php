@@ -16,6 +16,34 @@ use Phinx\Db\Adapter\MysqlAdapter;
 
 class Column extends \Phinx\Db\Table\Column
 {
+    protected $unique = false;
+
+    public function setNullable()
+    {
+        return $this->setNull(true);
+    }
+
+    public function setUnSigned()
+    {
+        return $this->setSigned(false);
+    }
+
+    public function setUnique()
+    {
+        $this->unique = true;
+        return $this;
+    }
+
+    public function getUnique()
+    {
+        return $this->unique;
+    }
+
+    public function isUnique()
+    {
+        return $this->getUnique();
+    }
+
     public static function make($name, $type, $options = [])
     {
         $column = new self();
