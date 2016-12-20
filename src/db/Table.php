@@ -35,7 +35,7 @@ class Table extends \Phinx\Db\Table
 
     public function addMorphs($name, $indexName = null)
     {
-        $this->addColumn(Column::integer("{$name}_id")->setUnSigned());
+        $this->addColumn(Column::unsignedInteger("{$name}_id"));
         $this->addColumn(Column::string("{$name}_type"));
         $this->addIndex(["{$name}_id", "{$name}_type"], ['name' => $indexName]);
         return $this;

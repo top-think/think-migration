@@ -23,7 +23,7 @@ class Column extends \Phinx\Db\Table\Column
         return $this->setNull(true);
     }
 
-    public function setUnSigned()
+    public function setUnsigned()
     {
         return $this->setSigned(false);
     }
@@ -151,6 +151,11 @@ class Column extends \Phinx\Db\Table\Column
     public static function tinyInteger($name)
     {
         return self::make($name, AdapterInterface::PHINX_TYPE_INTEGER, ['length' => MysqlAdapter::INT_TINY]);
+    }
+
+    public static function unsignedInteger($name)
+    {
+        return self::integer($name)->setUnSigned();
     }
 
     public static function timestamp($name)
