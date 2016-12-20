@@ -67,7 +67,7 @@ abstract class Command extends \think\console\Command
             ];
         }
 
-        $dbConfig['default_migration_table'] = $this->getConfig('table', 'migrations');
+        $dbConfig['default_migration_table'] = $this->getConfig('table', $dbConfig['table_prefix'] . 'migrations');
 
         return $dbConfig;
     }
