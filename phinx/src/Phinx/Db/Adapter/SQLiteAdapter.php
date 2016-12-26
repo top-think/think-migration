@@ -186,7 +186,6 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
             array_unshift($columns, $column);
         }
 
-
         $sql = 'CREATE TABLE ';
         $sql .= $this->quoteTableName($table->getName()) . ' (';
         foreach ($columns as $column) {
@@ -342,7 +341,7 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
         $writeColumns = array();
         foreach ($columns as $column) {
             $selectName = $column['name'];
-            $writeName = ($selectName == $columnName)? $newColumnName : $selectName;
+            $writeName = ($selectName == $columnName) ? $newColumnName : $selectName;
             $selectColumns[] = $this->quoteColumnName($selectName);
             $writeColumns[] = $this->quoteColumnName($writeName);
         }
@@ -361,7 +360,6 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
             $sql
         );
         $this->execute($sql);
-
 
         $sql = sprintf(
             'INSERT INTO %s(%s) SELECT %s FROM %s',
@@ -404,7 +402,7 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
         $writeColumns = array();
         foreach ($columns as $column) {
             $selectName = $column['name'];
-            $writeName = ($selectName === $columnName)? $newColumn->getName() : $selectName;
+            $writeName = ($selectName === $columnName) ? $newColumn->getName() : $selectName;
             $selectColumns[] = $this->quoteColumnName($selectName);
             $writeColumns[] = $this->quoteColumnName($writeName);
         }
