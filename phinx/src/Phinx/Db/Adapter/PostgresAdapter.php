@@ -250,7 +250,6 @@ class PostgresAdapter extends PdoAdapter implements AdapterInterface
             }
         }
 
-
         // set the indexes
         $indexes = $table->getIndexes();
         if (!empty($indexes)) {

@@ -77,7 +77,6 @@ abstract class Migrate extends Command
         $this->getAdapter()
              ->migrated($migration, $direction, date('Y-m-d H:i:s', $startTime), date('Y-m-d H:i:s', time()));
 
-
         $end = microtime(true);
 
         $this->output->writeln(' ==' . ' <info>' . $migration->getVersion() . ' ' . $migration->getName() . ':</info>' . ' <comment>' . ($direction === MigrationInterface::UP ? 'migrated' : 'reverted') . ' ' . sprintf('%.4fs', $end - $start) . '</comment>');
