@@ -1,6 +1,6 @@
 <?php
 
-use think\migration\Seeder
+use think\migration\Seeder;
 
 class $className extends Seeder
 {
