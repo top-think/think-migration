@@ -66,6 +66,9 @@ abstract class Command extends \think\console\Command
                 'table_prefix' => explode(',', $config['prefix'])[0]
             ];
         }
+
+        $dbConfig['default_migration_table'] = $this->getConfig('table', $dbConfig['table_prefix'] . 'migrations');
+
         return $dbConfig;
     }
 
@@ -86,6 +89,3 @@ abstract class Command extends \think\console\Command
         }
     }
 }
-
-class_alias('think\console\Input', 'Symfony\Component\Console\Input\InputInterface');
-class_alias('think\console\Output', 'Symfony\Component\Console\Output\OutputInterface');

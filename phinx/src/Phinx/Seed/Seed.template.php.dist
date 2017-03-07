@@ -1,8 +1,8 @@
 <?php
 
-use think\migration\Seeder;
+use $useClassName;
 
-class $className extends Seeder
+class $className extends $baseClassName
 {
     /**
      * Run Method.

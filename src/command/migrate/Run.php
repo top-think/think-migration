@@ -63,7 +63,6 @@ EOT
         $output->writeln('<comment>All Done. Took ' . sprintf('%.4fs', $end - $start) . '</comment>');
     }
 
-
     public function migrateToDateTime(\DateTime $dateTime)
     {
         $versions   = array_keys($this->getMigrations());

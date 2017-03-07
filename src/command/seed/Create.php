@@ -75,7 +75,6 @@ class Create extends Seed
             throw new \RuntimeException(sprintf('The file "%s" could not be written to', $path));
         }
 
-        $output->writeln('<info>using seed base class</info> ' . $classes['$useClassName']);
         $output->writeln('<info>created</info> .' . str_replace(getcwd(), '', $filePath));
     }
 

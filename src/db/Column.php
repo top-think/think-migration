@@ -16,6 +16,34 @@ use Phinx\Db\Adapter\MysqlAdapter;
 
 class Column extends \Phinx\Db\Table\Column
 {
+    protected $unique = false;
+
+    public function setNullable()
+    {
+        return $this->setNull(true);
+    }
+
+    public function setUnsigned()
+    {
+        return $this->setSigned(false);
+    }
+
+    public function setUnique()
+    {
+        $this->unique = true;
+        return $this;
+    }
+
+    public function getUnique()
+    {
+        return $this->unique;
+    }
+
+    public function isUnique()
+    {
+        return $this->getUnique();
+    }
+
     public static function make($name, $type, $options = [])
     {
         $column = new self();
@@ -123,6 +151,11 @@ class Column extends \Phinx\Db\Table\Column
     public static function tinyInteger($name)
     {
         return self::make($name, AdapterInterface::PHINX_TYPE_INTEGER, ['length' => MysqlAdapter::INT_TINY]);
+    }
+
+    public static function unsignedInteger($name)
+    {
+        return self::integer($name)->setUnSigned();
     }
 
     public static function timestamp($name)

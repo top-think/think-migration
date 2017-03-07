@@ -1,9 +1,8 @@
 <?php
 
-use think\migration\Migrator;
-use think\migration\db\Column;
+use $useClassName;
 
-class $className extends Migrator
+class $className extends $baseClassName
 {
     /**
      * Change Method.
