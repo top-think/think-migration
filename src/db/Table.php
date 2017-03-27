@@ -84,11 +84,22 @@ class Table extends \Phinx\Db\Table
         return $this;
     }
 
+    /**
+     * @param string $createdAtColumnName
+     * @param string $updatedAtColumnName
+     * @return \Phinx\Db\Table|Table
+     */
     public function addTimestamps($createdAtColumnName = 'create_time', $updatedAtColumnName = 'update_time')
     {
         return parent::addTimestamps($createdAtColumnName, $updatedAtColumnName);
     }
 
+    /**
+     * @param \Phinx\Db\Table\Column|string $columnName
+     * @param null                          $type
+     * @param array                         $options
+     * @return \Phinx\Db\Table|Table
+     */
     public function addColumn($columnName, $type = null, $options = [])
     {
         if ($columnName instanceof Column && $columnName->getUnique()) {
@@ -100,6 +111,12 @@ class Table extends \Phinx\Db\Table
         return parent::addColumn($columnName, $type, $options);
     }
 
+    /**
+     * @param string $columnName
+     * @param null   $newColumnType
+     * @param array  $options
+     * @return \Phinx\Db\Table|Table
+     */
     public function changeColumn($columnName, $newColumnType = null, $options = [])
     {
         if ($columnName instanceof \Phinx\Db\Table\Column) {
