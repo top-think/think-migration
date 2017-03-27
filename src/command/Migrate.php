@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: yunwuxin <448901948@qq.com>　
+// | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
 namespace think\migration\command;
@@ -16,6 +16,9 @@ use Phinx\Db\Adapter\ProxyAdapter;
 use Phinx\Migration\AbstractMigration;
 use Phinx\Migration\MigrationInterface;
 use Phinx\Util\Util;
+use think\console\Input;
+use think\console\input\Option as InputOption;
+use think\console\Output;
 use think\migration\Command;
 use think\migration\Migrator;
 
@@ -26,9 +29,27 @@ abstract class Migrate extends Command
      */
     protected $migrations;
 
+    public function __construct($name = null)
+    {
+
+        parent::__construct($name);
+
+        $this->addOption('--config', null, InputOption::VALUE_REQUIRED, 'The database config name', 'database');
+    }
+
+    /**
+     * 初始化
+     * @param Input  $input  An InputInterface instance
+     * @param Output $output An OutputInterface instance
+     */
+    protected function initialize(Input $input, Output $output)
+    {
+        $this->config = $input->getOption('config');
+    }
+
     protected function getPath()
     {
-        return $this->getConfig('path', ROOT_PATH . 'database') . DS . 'migrations';
+        return $this->getConfig('path', ROOT_PATH . 'database') . DS . 'migrations' . ($this->config !== 'database' ? DS . $this->config : '');
     }
 
     protected function executeMigration(MigrationInterface $migration, $direction = MigrationInterface::UP)
@@ -75,7 +96,7 @@ abstract class Migrate extends Command
 
         // Record it in the database
         $this->getAdapter()
-             ->migrated($migration, $direction, date('Y-m-d H:i:s', $startTime), date('Y-m-d H:i:s', time()));
+            ->migrated($migration, $direction, date('Y-m-d H:i:s', $startTime), date('Y-m-d H:i:s', time()));
 
         $end = microtime(true);
 
