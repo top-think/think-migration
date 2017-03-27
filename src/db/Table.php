@@ -12,7 +12,6 @@
 namespace think\migration\db;
 
 use Phinx\Db\Table\Index;
-use Phinx\Db\Table\Column;
 
 class Table extends \Phinx\Db\Table
 {
@@ -92,7 +91,7 @@ class Table extends \Phinx\Db\Table
 
     public function addColumn($columnName, $type = null, $options = [])
     {
-        if ($columnName instanceof Column && $columnName->isUnique()) {
+        if ($columnName instanceof Column && $columnName->getUnique()) {
             $index = new Index();
             $index->setColumns([$columnName->getName()]);
             $index->setType(Index::UNIQUE);
@@ -103,7 +102,7 @@ class Table extends \Phinx\Db\Table
 
     public function changeColumn($columnName, $newColumnType = null, $options = [])
     {
-        if ($columnName instanceof Column) {
+        if ($columnName instanceof \Phinx\Db\Table\Column) {
             return parent::changeColumn($columnName->getName(), $columnName, $options);
         }
         return parent::changeColumn($columnName, $newColumnType, $options);
