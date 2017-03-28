@@ -84,6 +84,14 @@ class Table extends \Phinx\Db\Table
         return $this;
     }
 
+    public function addNullableMorphs($name, $indexName = null)
+    {
+        $this->addColumn(Column::unsignedInteger("{$name}_id")->setNullable());
+        $this->addColumn(Column::string("{$name}_type")->setNullable());
+        $this->addIndex(["{$name}_id", "{$name}_type"], ['name' => $indexName]);
+        return $this;
+    }
+
     /**
      * @param string $createdAtColumnName
      * @param string $updatedAtColumnName
