@@ -59,7 +59,7 @@ abstract class PdoAdapter implements AdapterInterface
     /**
      * @var string
      */
-    protected $schemaTableName = 'phinxlog';
+    protected $schemaTableName = 'migrations';
 
     /**
      * @var \PDO
