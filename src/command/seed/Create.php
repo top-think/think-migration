@@ -11,8 +11,8 @@ namespace think\migration\command\seed;
 
 use Phinx\Util\Util;
 use think\console\Input;
-use think\console\Output;
 use think\console\input\Argument as InputArgument;
+use think\console\Output;
 use think\migration\command\Seed;
 
 class Create extends Seed
@@ -23,9 +23,9 @@ class Create extends Seed
     protected function configure()
     {
         $this->setName('seed:create')
-             ->setDescription('Create a new database seeder')
-             ->addArgument('name', InputArgument::REQUIRED, 'What is the name of the seeder?')
-             ->setHelp(sprintf('%sCreates a new database seeder%s', PHP_EOL, PHP_EOL));
+            ->setDescription('Create a new database seeder')
+            ->addArgument('name', InputArgument::REQUIRED, 'What is the name of the seeder?')
+            ->setHelp(sprintf('%sCreates a new database seeder%s', PHP_EOL, PHP_EOL));
     }
 
     /**
@@ -58,7 +58,7 @@ class Create extends Seed
         }
 
         // Compute the file path
-        $filePath = $path . DS . $className . '.php';
+        $filePath = $path . DIRECTORY_SEPARATOR . $className . '.php';
 
         if (is_file($filePath)) {
             throw new \InvalidArgumentException(sprintf('The file "%s" already exists', basename($filePath)));
@@ -67,7 +67,7 @@ class Create extends Seed
         // inject the class names appropriate to this seeder
         $contents = file_get_contents($this->getTemplate());
         $classes  = [
-            '$className' => $className
+            '$className' => $className,
         ];
         $contents = strtr($contents, $classes);
 
