@@ -63,7 +63,7 @@ class Create extends Migrate
 
         // Compute the file path
         $fileName = Util::mapClassNameToFileName($className);
-        $filePath = $path . DS . $fileName;
+        $filePath = $path . DIRECTORY_SEPARATOR . $fileName;
 
         if (is_file($filePath)) {
             throw new \InvalidArgumentException(sprintf('The file "%s" already exists', $filePath));
