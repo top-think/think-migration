@@ -35,7 +35,7 @@ abstract class Migrate extends Command
 
         parent::__construct($name);
 
-        $this->addOption('--config', null, InputOption::VALUE_REQUIRED, 'The database config name', 'database');
+        $this->addOption('--config', null, InputOption::VALUE_REQUIRED, 'The database config name', '');
     }
 
     /**
