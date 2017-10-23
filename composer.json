@@ -16,7 +16,7 @@
       "src/config.php"
     ]
   },
-  "require-dev": {
+  "require": {
       "topthink/framework": "5.1.x-dev"
   }
 }
