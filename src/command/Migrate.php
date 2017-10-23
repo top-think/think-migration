@@ -16,8 +16,6 @@ use Phinx\Db\Adapter\ProxyAdapter;
 use Phinx\Migration\AbstractMigration;
 use Phinx\Migration\MigrationInterface;
 use Phinx\Util\Util;
-use think\console\Input;
-use think\console\Output;
 use think\facade\Env;
 use think\migration\Command;
 use think\migration\Migrator;
