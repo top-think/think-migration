@@ -17,8 +17,6 @@ use think\facade\Config;
 
 abstract class Command extends \think\console\Command
 {
-    protected $config = 'database';
-
     public function getAdapter()
     {
         if (isset($this->adapter)) {
@@ -44,7 +42,7 @@ abstract class Command extends \think\console\Command
      */
     protected function getDbConfig()
     {
-        $config = Db::connect($this->config)->getConfig();
+        $config = Db::connect()->getConfig();
 
         if (0 == $config['deploy']) {
             $dbConfig = [
