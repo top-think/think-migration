@@ -17,7 +17,6 @@ use Phinx\Migration\AbstractMigration;
 use Phinx\Migration\MigrationInterface;
 use Phinx\Util\Util;
 use think\console\Input;
-use think\console\input\Option as InputOption;
 use think\console\Output;
 use think\facade\Env;
 use think\migration\Command;
@@ -30,27 +29,9 @@ abstract class Migrate extends Command
      */
     protected $migrations;
 
-    public function __construct($name = null)
-    {
-
-        parent::__construct($name);
-
-        $this->addOption('--config', null, InputOption::VALUE_REQUIRED, 'The database config name', 'database');
-    }
-
-    /**
-     * 初始化
-     * @param Input  $input  An InputInterface instance
-     * @param Output $output An OutputInterface instance
-     */
-    protected function initialize(Input $input, Output $output)
-    {
-        $this->config = $input->getOption('config');
-    }
-
     protected function getPath()
     {
-        return $this->getConfig('path', Env::get('root_path') . 'database') . DIRECTORY_SEPARATOR . 'migrations' . ('database' !== $this->config ? DIRECTORY_SEPARATOR . $this->config : '');
+        return Env::get('root_path') . 'database' . DIRECTORY_SEPARATOR . 'migrations';
     }
 
     protected function executeMigration(MigrationInterface $migration, $direction = MigrationInterface::UP)

@@ -27,7 +27,7 @@ abstract class Seed extends Command
 
     protected function getPath()
     {
-        return $this->getConfig('path', Env::get('root_path') . 'database') . DIRECTORY_SEPARATOR . 'seeds';
+        return Env::get('root_path') . 'database' . DIRECTORY_SEPARATOR . 'seeds';
     }
 
     public function getSeeds()

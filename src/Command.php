@@ -17,6 +17,8 @@ use think\facade\Config;
 
 abstract class Command extends \think\console\Command
 {
+    protected $config = 'database';
+
     public function getAdapter()
     {
         if (isset($this->adapter)) {
