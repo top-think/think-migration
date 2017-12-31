@@ -17,6 +17,6 @@
     ]
   },
   "require": {
-      "topthink/framework": "5.1.x-dev"
+      "topthink/framework": "5.1.*"
   }
 }
