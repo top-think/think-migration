@@ -11,8 +11,17 @@
 namespace think\migration;
 
 use Phinx\Seed\AbstractSeed;
+use think\migration\db\Table;
 
 class Seeder extends AbstractSeed
 {
-
+    /**
+     * @param string $tableName
+     * @param array  $options
+     * @return Table
+     */
+    public function table($tableName, $options = [])
+    {
+        return new Table($tableName, $options, $this->getAdapter());
+    }
 }
