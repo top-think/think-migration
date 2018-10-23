@@ -24,6 +24,7 @@ class Status extends Migrate
         $this->setName('migrate:status')
              ->setDescription('Show migration status')
              ->addOption('--format', '-f', InputOption::VALUE_REQUIRED, 'The output format: text or json. Defaults to text.')
+             ->addOption('--connection', '-c', InputOption::VALUE_REQUIRED, 'The database connection to migrate to')
              ->setHelp(<<<EOT
 The <info>migrate:status</info> command prints a list of all migrations, along with their current status
 
@@ -42,7 +43,10 @@ EOT
      */
     protected function execute(Input $input, Output $output)
     {
-        $format = $input->getOption('format');
+        $format     = $input->getOption('format');
+        $connection = $input->getOption('connection');
+
+        $this->setConnection($connection);
 
         if (null !== $format) {
             $output->writeln('<info>using format</info> ' . $format);
