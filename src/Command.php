@@ -76,7 +76,7 @@ abstract class Command extends \think\console\Command
 
     protected function getConfig($name, $default = null)
     {
-        $config = Config::pull('migration');
+        $config = Config::get('migration');
         return isset($config[$name]) ? $config[$name] : $default;
     }
 
