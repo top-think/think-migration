@@ -8,7 +8,6 @@
 
 namespace think\migration;
 
-
 use think\App;
 use think\Console;
 
