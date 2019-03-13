@@ -11,12 +11,16 @@
     "psr-4": {
       "Phinx\\": "phinx/src/Phinx",
       "think\\migration\\": "src"
-    },
-    "files": [
-      "src/config.php"
-    ]
+    }
+  },
+  "extra": {
+    "think": {
+      "services": [
+        "think\\migration\\Service"
+      ]
+    }
   },
   "require": {
-      "topthink/framework": "5.2.*-dev"
+    "topthink/framework": "5.2.*-dev"
   }
 }

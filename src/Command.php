@@ -12,8 +12,8 @@ namespace think\migration;
 
 use InvalidArgumentException;
 use Phinx\Db\Adapter\AdapterFactory;
-use think\Db;
 use think\facade\Config;
+use think\facade\Db;
 
 abstract class Command extends \think\console\Command
 {
@@ -43,7 +43,7 @@ abstract class Command extends \think\console\Command
      */
     protected function getDbConfig()
     {
-        $config = Db::connect()->getConfig();
+        $config = Db::getConfig();
 
         if (0 == $config['deploy']) {
             $dbConfig = [

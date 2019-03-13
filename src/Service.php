@@ -8,18 +8,11 @@
 
 namespace think\migration;
 
-
-use think\App;
-use think\Console;
-
-class Service
+class Service extends \think\Service
 {
-    public function register(App $app)
+    public function boot()
     {
-        /** @var Console $console */
-        $console = $app->make(Console::class);
-
-        $console->addCommands([
+        $this->commands([
             "think\\migration\\command\\migrate\\Create",
             "think\\migration\\command\\migrate\\Run",
             "think\\migration\\command\\migrate\\Rollback",
