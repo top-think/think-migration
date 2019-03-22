@@ -33,9 +33,9 @@ class Create extends Seed
      *
      * @param Input  $input
      * @param Output $output
-     * @throws \RuntimeException
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws \InvalidArgumentException
+     * @throws \RuntimeException
      */
     protected function execute(Input $input, Output $output)
     {
@@ -67,7 +67,7 @@ class Create extends Seed
         // inject the class names appropriate to this seeder
         $contents = file_get_contents($this->getTemplate());
         $classes  = [
-            '$className' => $className,
+            'SeederClass' => $className,
         ];
         $contents = strtr($contents, $classes);
 

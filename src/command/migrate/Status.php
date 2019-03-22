@@ -27,8 +27,8 @@ class Status extends Migrate
              ->setHelp(<<<EOT
 The <info>migrate:status</info> command prints a list of all migrations, along with their current status
 
-<info>php console migrate:status</info>
-<info>php console migrate:status -f json</info>
+<info>php think migrate:status</info>
+<info>php think migrate:status -f json</info>
 EOT
              );
     }

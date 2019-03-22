@@ -29,10 +29,10 @@ class Run extends Migrate
              ->setHelp(<<<EOT
 The <info>migrate:run</info> command runs all available migrations, optionally up to a specific version
 
-<info>php console migrate:run</info>
-<info>php console migrate:run -t 20110103081132</info>
-<info>php console migrate:run -d 20110103</info>
-<info>php console migrate:run -v</info>
+<info>php think migrate:run</info>
+<info>php think migrate:run -t 20110103081132</info>
+<info>php think migrate:run -d 20110103</info>
+<info>php think migrate:run -v</info>
 
 EOT
              );

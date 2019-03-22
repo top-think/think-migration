@@ -2,7 +2,7 @@
 
 use think\migration\Seeder;
 
-class $className extends Seeder
+class SeederClass extends Seeder
 {
     /**
      * Run Method.

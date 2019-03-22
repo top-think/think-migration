@@ -16,9 +16,6 @@ use Phinx\Db\Adapter\ProxyAdapter;
 use Phinx\Migration\AbstractMigration;
 use Phinx\Migration\MigrationInterface;
 use Phinx\Util\Util;
-use think\console\Input;
-use think\console\Output;
-use think\facade\Env;
 use think\migration\Command;
 use think\migration\Migrator;
 
@@ -31,7 +28,7 @@ abstract class Migrate extends Command
 
     protected function getPath()
     {
-        return Env::get('root_path') . 'database' . DIRECTORY_SEPARATOR . 'migrations';
+        return $this->app->getRootPath() . 'database' . DIRECTORY_SEPARATOR . 'migrations';
     }
 
     protected function executeMigration(MigrationInterface $migration, $direction = MigrationInterface::UP)

@@ -11,9 +11,9 @@
 
 namespace think\migration\command;
 
+use InvalidArgumentException;
 use Phinx\Seed\AbstractSeed;
 use Phinx\Util\Util;
-use think\facade\Env;
 use think\migration\Command;
 use think\migration\Seeder;
 
@@ -27,7 +27,7 @@ abstract class Seed extends Command
 
     protected function getPath()
     {
-        return Env::get('root_path') . 'database' . DIRECTORY_SEPARATOR . 'seeds';
+        return $this->app->getRootPath() . 'database' . DIRECTORY_SEPARATOR . 'seeds';
     }
 
     public function getSeeds()
@@ -50,14 +50,14 @@ abstract class Seed extends Command
                     /** @noinspection PhpIncludeInspection */
                     require_once $filePath;
                     if (!class_exists($class)) {
-                        throw new \InvalidArgumentException(sprintf('Could not find class "%s" in file "%s"', $class, $filePath));
+                        throw new InvalidArgumentException(sprintf('Could not find class "%s" in file "%s"', $class, $filePath));
                     }
 
                     // instantiate it
                     $seed = new $class($this->input, $this->output);
 
                     if (!($seed instanceof AbstractSeed)) {
-                        throw new \InvalidArgumentException(sprintf('The class "%s" in file "%s" must extend \Phinx\Seed\AbstractSeed', $class, $filePath));
+                        throw new InvalidArgumentException(sprintf('The class "%s" in file "%s" must extend \Phinx\Seed\AbstractSeed', $class, $filePath));
                     }
 
                     $seeds[$class] = $seed;

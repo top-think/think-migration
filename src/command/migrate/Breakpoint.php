@@ -29,9 +29,9 @@ class Breakpoint extends Migrate
 If no target is supplied then the most recent migration will be used.
 You cannot specify un-migrated targets
 
-<info>phinx breakpoint</info>
-<info>phinx breakpoint -t 20110103081132</info>
-<info>phinx breakpoint -r</info>
+<info>php think migrate:breakpoint</info>
+<info>php think migrate:breakpoint -t 20110103081132</info>
+<info>php think migrate:breakpoint -r</info>
 EOT
              );
     }

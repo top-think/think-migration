@@ -12,7 +12,6 @@ namespace think\migration;
 
 use InvalidArgumentException;
 use Phinx\Db\Adapter\AdapterFactory;
-use think\facade\Config;
 use think\facade\Db;
 
 abstract class Command extends \think\console\Command
@@ -69,15 +68,9 @@ abstract class Command extends \think\console\Command
             ];
         }
 
-        $dbConfig['default_migration_table'] = $this->getConfig('table', $dbConfig['table_prefix'] . 'migrations');
+        $dbConfig['default_migration_table'] = $dbConfig['table_prefix'] . $this->app->config->get('database.migration_table', 'migrations');
 
         return $dbConfig;
-    }
-
-    protected function getConfig($name, $default = null)
-    {
-        $config = Config::get('migration');
-        return isset($config[$name]) ? $config[$name] : $default;
     }
 
     protected function verifyMigrationDirectory($path)

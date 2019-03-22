@@ -30,10 +30,10 @@ class Rollback extends Migrate
              ->setHelp(<<<EOT
 The <info>migrate:rollback</info> command reverts the last migration, or optionally up to a specific version
 
-<info>php console migrate:rollback</info>
-<info>php console migrate:rollback -t 20111018185412</info>
-<info>php console migrate:rollback -d 20111018</info>
-<info>php console migrate:rollback -v</info>
+<info>php think migrate:rollback</info>
+<info>php think migrate:rollback -t 20111018185412</info>
+<info>php think migrate:rollback -d 20111018</info>
+<info>php think migrate:rollback -v</info>
 
 EOT
              );

@@ -10,8 +10,8 @@
 namespace think\migration\command\migrate;
 
 use Phinx\Util\Util;
-use think\console\input\Argument as InputArgument;
 use think\console\Input;
+use think\console\input\Argument as InputArgument;
 use think\console\Output;
 use think\migration\command\Migrate;
 
@@ -24,9 +24,9 @@ class Create extends Migrate
     protected function configure()
     {
         $this->setName('migrate:create')
-             ->setDescription('Create a new migration')
-             ->addArgument('name', InputArgument::REQUIRED, 'What is the name of the migration?')
-             ->setHelp(sprintf('%sCreates a new database migration%s', PHP_EOL, PHP_EOL));
+            ->setDescription('Create a new migration')
+            ->addArgument('name', InputArgument::REQUIRED, 'What is the name of the migration?')
+            ->setHelp(sprintf('%sCreates a new database migration%s', PHP_EOL, PHP_EOL));
     }
 
     /**
@@ -34,9 +34,9 @@ class Create extends Migrate
      *
      * @param Input  $input
      * @param Output $output
-     * @throws \RuntimeException
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws \InvalidArgumentException
+     * @throws \RuntimeException
      */
     protected function execute(Input $input, Output $output)
     {
@@ -77,7 +77,7 @@ class Create extends Migrate
 
         // inject the class names appropriate to this migration
         $contents = strtr($contents, [
-            '$className' => $className,
+            'MigratorClass' => $className,
         ]);
 
         if (false === file_put_contents($filePath, $contents)) {

@@ -1,26 +1,33 @@
 {
-  "name": "topthink/think-migration",
-  "authors": [
-    {
-      "name": "yunwuxin",
-      "email": "448901948@qq.com"
+    "name": "topthink/think-migration",
+    "authors": [
+        {
+            "name": "yunwuxin",
+            "email": "448901948@qq.com"
+        }
+    ],
+    "license": "Apache-2.0",
+    "autoload": {
+        "psr-4": {
+            "Phinx\\": "phinx/src/Phinx",
+            "think\\migration\\": "src"
+        }
+    },
+    "extra": {
+        "think": {
+            "services": [
+                "think\\migration\\Service"
+            ]
+        }
+    },
+    "require": {
+        "topthink/framework": "^5.2",
+        "topthink/think-helper": "^3.0.2"
+    },
+    "suggest": {
+        "fzaninotto/faker": "Required to use the factory builder (^1.8)."
+    },
+    "require-dev": {
+        "fzaninotto/faker": "^1.8"
     }
-  ],
-  "license": "Apache-2.0",
-  "autoload": {
-    "psr-4": {
-      "Phinx\\": "phinx/src/Phinx",
-      "think\\migration\\": "src"
-    }
-  },
-  "extra": {
-    "think": {
-      "services": [
-        "think\\migration\\Service"
-      ]
-    }
-  },
-  "require": {
-    "topthink/framework": "5.2.*-dev"
-  }
 }

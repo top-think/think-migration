@@ -3,7 +3,7 @@
 use think\migration\Migrator;
 use think\migration\db\Column;
 
-class $className extends Migrator
+class MigratorClass extends Migrator
 {
     /**
      * Change Method.

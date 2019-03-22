@@ -28,9 +28,9 @@ class Run extends Seed
              ->setHelp(<<<EOT
                 The <info>seed:run</info> command runs all available or individual seeders
 
-<info>php console seed:run</info>
-<info>php console seed:run -s UserSeeder</info>
-<info>php console seed:run -v</info>
+<info>php think seed:run</info>
+<info>php think seed:run -s UserSeeder</info>
+<info>php think seed:run -v</info>
 
 EOT
              );
