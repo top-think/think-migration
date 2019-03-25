@@ -21,7 +21,7 @@
         }
     },
     "require": {
-        "topthink/framework": "^5.2",
+        "topthink/framework": "^6.0",
         "topthink/think-helper": "^3.0.2"
     },
     "suggest": {
