@@ -35,6 +35,8 @@ class Service extends \think\Service
             return (new Factory($this->app->make(FakerGenerator::class)))->load($this->app->getRootPath() . 'database/factories/');
         });
 
+        $this->app->bind('migration.creator', Creator::class);
+
         $this->commands([
             MigrateCreate::class,
             MigrateRun::class,

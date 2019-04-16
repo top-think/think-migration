@@ -42,9 +42,7 @@ class Create extends Seed
         $path = $this->getPath();
 
         if (!file_exists($path)) {
-            if ($this->output->confirm($this->input, 'Create seeds directory? [y]/n')) {
-                mkdir($path, 0755, true);
-            }
+            mkdir($path, 0755, true);
         }
 
         $this->verifyMigrationDirectory($path);

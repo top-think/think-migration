@@ -31,9 +31,7 @@ class Create extends Command
         $path = $this->getPath();
 
         if (!file_exists($path)) {
-            if ($this->output->confirm($this->input, 'Create factories directory? [y]/n')) {
-                mkdir($path, 0755, true);
-            }
+            mkdir($path, 0755, true);
         }
 
         if (!is_dir($path)) {
