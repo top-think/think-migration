@@ -17,7 +17,7 @@ class Creator
         $this->app = $app;
     }
 
-    public function create($className)
+    public function create(string $className)
     {
         $path = $this->ensureDirectory();
 

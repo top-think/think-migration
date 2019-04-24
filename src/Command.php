@@ -39,7 +39,7 @@ abstract class Command extends \think\console\Command
      * 获取数据库配置
      * @return array
      */
-    protected function getDbConfig()
+    protected function getDbConfig(): array
     {
         $config = $this->app->config->get('database');
 
@@ -72,7 +72,7 @@ abstract class Command extends \think\console\Command
         return $dbConfig;
     }
 
-    protected function verifyMigrationDirectory($path)
+    protected function verifyMigrationDirectory(string $path)
     {
         if (!is_dir($path)) {
             throw new InvalidArgumentException(sprintf('Migration directory "%s" does not exist', $path));
