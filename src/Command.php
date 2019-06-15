@@ -41,7 +41,7 @@ abstract class Command extends \think\console\Command
      */
     protected function getDbConfig(): array
     {
-        $config = $this->app->config->get('database');
+        $config = $this->app->config->get('database.connections.'.Env::get('database.driver', 'mysql'));
 
         if (0 == $config['deploy']) {
             $dbConfig = [
