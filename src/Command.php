@@ -12,12 +12,10 @@ namespace think\migration;
 
 use InvalidArgumentException;
 use Phinx\Db\Adapter\AdapterFactory;
-use think\Config;
-use think\Db;
+use think\Exception;
 
 abstract class Command extends \think\console\Command
 {
-    protected $config = 'database';
 
     public function getAdapter()
     {
@@ -38,15 +36,47 @@ abstract class Command extends \think\console\Command
         return $adapter;
     }
 
+
     /**
      * 获取数据库配置
      * @return array
      */
-    protected function getDbConfig()
+    protected function getDbConfig(): array
     {
-        $config = Db::connect($this->config)->getConfig();
-
-        if ($config['deploy'] == 0) {
+        $config = $this->app->config->get('database',[]);
+        if(isset($config['default'])===false    ||  isset($config['connections'][$config['default']])===false){
+            throw new Exception('Database Configuration Error:Missing Default Configuration');
+        }
+        //支持的数据库类型
+        $allowDatabaseType = ['mysql','sqlite','pgsql','sqlsrv','mongo','oracle'];
+        //默认数据库配置信息
+        $appDatabaseConfig  =   $config['connections'][$config['default']];
+        if(isset($appDatabaseConfig['type'])===false    ||  in_array(strtolower($appDatabaseConfig['type']),$allowDatabaseType)===false){
+            throw new Exception('Database Configuration Error:Missing Database Type or Not Allowed Database Type');
+        }
+        switch (true){
+            case $appDatabaseConfig['type']==='mysql':
+                return $this->getMysqlDbConfig($config['connections'][$config['default']]);
+            default:
+                throw new Exception('Database Type : '.$appDatabaseConfig['type'].' Will Be Supported Soon');
+        }
+    }
+    /**
+     * @desc    获取mysql数据库配置
+     * @param $config
+     * @return array
+     * @throws Exception
+     * @author Liuqian
+     */
+    protected function getMysqlDbConfig(array $config):array
+    {
+        $necessaryConfigFields  =   ['deploy','type','hostname','database','username','password','hostport','charset','prefix'];
+        foreach ($necessaryConfigFields as $field){
+            if(isset($config[$field])===false){
+                throw new Exception('Database Configuration Missing Necessary Fields：'.$field);
+            }
+        }
+        if (isset($config['deploy'])&&0 == $config['deploy']) {
             $dbConfig = [
                 'adapter'      => $config['type'],
                 'host'         => $config['hostname'],
@@ -69,19 +99,11 @@ abstract class Command extends \think\console\Command
                 'table_prefix' => explode(',', $config['prefix'])[0],
             ];
         }
-
-        $dbConfig['default_migration_table'] = $this->getConfig('table', $dbConfig['table_prefix'] . 'migrations');
-
+        $dbConfig['default_migration_table'] = $dbConfig['table_prefix'] . ($config['migration_table'] ?? 'migrations');
         return $dbConfig;
     }
 
-    protected function getConfig($name, $default = null)
-    {
-        $config = Config::get('migration');
-        return isset($config[$name]) ? $config[$name] : $default;
-    }
-
-    protected function verifyMigrationDirectory($path)
+    protected function verifyMigrationDirectory(string $path)
     {
         if (!is_dir($path)) {
             throw new InvalidArgumentException(sprintf('Migration directory "%s" does not exist', $path));
