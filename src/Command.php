@@ -41,7 +41,9 @@ abstract class Command extends \think\console\Command
      */
     protected function getDbConfig(): array
     {
-        $config = $this->app->config->get('database');
+        $default = $this->app->config->get('database.default');
+
+        $config = $this->app->config->get("database.connections.{$default}");
 
         if (0 == $config['deploy']) {
             $dbConfig = [
@@ -67,7 +69,9 @@ abstract class Command extends \think\console\Command
             ];
         }
 
-        $dbConfig['default_migration_table'] = $dbConfig['table_prefix'] . ($config['migration_table'] ?? 'migrations');
+        $table = $this->app->config->get('database.migration_table', 'migrations');
+
+        $dbConfig['default_migration_table'] = $dbConfig['table_prefix'] . $table;
 
         return $dbConfig;
     }

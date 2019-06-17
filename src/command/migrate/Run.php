@@ -23,10 +23,10 @@ class Run extends Migrate
     protected function configure()
     {
         $this->setName('migrate:run')
-             ->setDescription('Migrate the database')
-             ->addOption('--target', '-t', InputOption::VALUE_REQUIRED, 'The version number to migrate to')
-             ->addOption('--date', '-d', InputOption::VALUE_REQUIRED, 'The date to migrate to')
-             ->setHelp(<<<EOT
+            ->setDescription('Migrate the database')
+            ->addOption('--target', '-t', InputOption::VALUE_REQUIRED, 'The version number to migrate to')
+            ->addOption('--date', '-d', InputOption::VALUE_REQUIRED, 'The date to migrate to')
+            ->setHelp(<<<EOT
 The <info>migrate:run</info> command runs all available migrations, optionally up to a specific version
 
 <info>php think migrate:run</info>
@@ -35,7 +35,7 @@ The <info>migrate:run</info> command runs all available migrations, optionally u
 <info>php think migrate:run -v</info>
 
 EOT
-             );
+            );
     }
 
     /**
@@ -43,7 +43,6 @@ EOT
      *
      * @param Input  $input
      * @param Output $output
-     * @return integer integer 0 on success, or an error code.
      */
     protected function execute(Input $input, Output $output)
     {
