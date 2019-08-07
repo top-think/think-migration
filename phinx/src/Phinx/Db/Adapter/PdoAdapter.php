@@ -518,8 +518,8 @@ abstract class PdoAdapter implements AdapterInterface
             } else {
                 $table->addColumn('version', 'biginteger')
                       ->addColumn('migration_name', 'string', array('limit' => 100, 'default' => null, 'null' => true))
-                      ->addColumn('start_time', 'timestamp')
-                      ->addColumn('end_time', 'timestamp')
+                      ->addColumn('start_time', 'timestamp', ['default' => null, 'null' => true])
+                      ->addColumn('end_time', 'timestamp', ['default' => null, 'null' => true])
                       ->addColumn('breakpoint', 'boolean', array('default' => false))
                       ->save();
             }
