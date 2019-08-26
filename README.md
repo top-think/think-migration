@@ -5,7 +5,7 @@
 composer require topthink/think-migration
 ~~~
 
-## 修改
+## 修改（v2.0.3）
 * Column的类型报错
 
 * PdoAdapter.php中的getColumnTypes方法中添加了smallinteger的数组内容，
