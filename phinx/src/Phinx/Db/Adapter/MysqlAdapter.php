@@ -792,8 +792,9 @@ class MysqlAdapter extends PdoAdapter implements AdapterInterface
                         'tinyint'   => static::INT_TINY,
                     );
                     $limits = array(
-                        'int'    => 11,
-                        'bigint' => 20,
+                        'smallint'  => 5,
+                        'int'       => 11,
+                        'bigint'    => 20,
                     );
                     foreach ($sizes as $name => $length) {
                         if ($limit >= $length) {
@@ -808,6 +809,9 @@ class MysqlAdapter extends PdoAdapter implements AdapterInterface
                     $limit = 11;
                 }
                 return array('name' => 'int', 'limit' => $limit);
+                break;
+            case static::PHINX_TYPE_SMALL_INTEGER:
+                return array('name' => 'smallint', 'limit' => 5);
                 break;
             case static::PHINX_TYPE_BIG_INTEGER:
                 return array('name' => 'bigint', 'limit' => 20);
