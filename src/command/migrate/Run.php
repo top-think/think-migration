@@ -26,6 +26,7 @@ class Run extends Migrate
              ->setDescription('Migrate the database')
              ->addOption('--target', '-t', InputOption::VALUE_REQUIRED, 'The version number to migrate to')
              ->addOption('--date', '-d', InputOption::VALUE_REQUIRED, 'The date to migrate to')
+             ->addOption('--connection', '-c', InputOption::VALUE_REQUIRED, 'The database connection to migrate to')
              ->setHelp(<<<EOT
 The <info>migrate:run</info> command runs all available migrations, optionally up to a specific version
 
@@ -47,8 +48,11 @@ EOT
      */
     protected function execute(Input $input, Output $output)
     {
-        $version = $input->getOption('target');
-        $date    = $input->getOption('date');
+        $version    = $input->getOption('target');
+        $date       = $input->getOption('date');
+        $connection = $input->getOption('connection');
+
+        $this->setConnection($connection);
 
         // run the migrations
         $start = microtime(true);
