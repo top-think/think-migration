@@ -106,7 +106,7 @@ class Util
     {
         $arr = preg_split('/(?=[A-Z])/', $className);
         unset($arr[0]); // remove the first element ('')
-        $fileName = static::getCurrentTimestamp() . '_' . strtolower(implode($arr, '_')) . '.php';
+        $fileName = static::getCurrentTimestamp() . '_' . strtolower(implode('_', $arr)) . '.php';
         return $fileName;
     }
 
