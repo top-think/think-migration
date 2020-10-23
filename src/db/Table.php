@@ -49,6 +49,17 @@ class Table extends \Phinx\Db\Table
     }
 
     /**
+     * 设置起始自增值
+     * @param integer $auto_increment
+     * @return $this
+     */
+    public function setAutoIncrement($auto_increment)
+    {
+        $this->options['auto_increment'] = $auto_increment;
+        return $this;
+    }
+
+    /**
      * 设置表注释
      * @param $comment
      * @return $this

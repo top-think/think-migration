@@ -246,6 +246,11 @@ class MysqlAdapter extends PdoAdapter implements AdapterInterface
             $optionsStr .= sprintf(' COLLATE %s', $options['collation']);
         }
 
+        // set the table auto_increment
+        if (isset($options['auto_increment'])) {
+            $optionsStr .= sprintf(' AUTO_INCREMENT = %s', $options['auto_increment']);
+        }
+
         // set the table comment
         if (isset($options['comment'])) {
             $optionsStr .= sprintf(" COMMENT=%s ", $this->getConnection()->quote($options['comment']));
