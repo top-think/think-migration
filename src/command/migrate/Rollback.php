@@ -27,7 +27,8 @@ class Rollback extends Migrate
              ->addOption('--target', '-t', InputOption::VALUE_REQUIRED, 'The version number to rollback to')
              ->addOption('--date', '-d', InputOption::VALUE_REQUIRED, 'The date to rollback to')
              ->addOption('--force', '-f', InputOption::VALUE_NONE, 'Force rollback to ignore breakpoints')
-             ->setHelp(<<<EOT
+             ->setHelp(
+                 <<<EOT
 The <info>migrate:rollback</info> command reverts the last migration, or optionally up to a specific version
 
 <info>php think migrate:rollback</info>

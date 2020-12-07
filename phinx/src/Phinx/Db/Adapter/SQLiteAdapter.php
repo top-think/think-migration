@@ -175,7 +175,6 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
                    ->setIdentity(true);
 
             array_unshift($columns, $column);
-
         } elseif (isset($options['id']) && is_string($options['id'])) {
             // Handle id => "field_name" to support AUTO_INCREMENT
             $column = new Column();
@@ -683,7 +682,6 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
 
         foreach ($rows as $row) {
             if ($row['tbl_name'] === $tableName) {
-
                 if (strpos($row['sql'], 'REFERENCES') !== false) {
                     preg_match_all("/\(`([^`]*)`\) REFERENCES/", $row['sql'], $matches);
                     foreach ($matches[1] as $match) {
@@ -823,11 +821,11 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
         $sql .= " VALUES ";
 
         $sql .= "(" . implode(', ', array_map(function ($value) {
-                if (is_numeric($value)) {
-                    return $value;
-                }
-                return "'{$value}'";
-            }, $row)) . ")";
+            if (is_numeric($value)) {
+                return $value;
+            }
+            return "'{$value}'";
+        }, $row)) . ")";
 
         $this->execute($sql);
         $this->endCommandTimer();

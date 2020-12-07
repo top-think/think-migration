@@ -51,5 +51,4 @@ class Create extends Command
 
         $output->writeln('<info>created</info> .' . str_replace(getcwd(), '', realpath($path)));
     }
-
 }
