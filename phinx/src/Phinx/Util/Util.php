@@ -26,6 +26,7 @@
  * @package    Phinx
  * @subpackage Phinx\Util
  */
+
 namespace Phinx\Util;
 
 class Util
@@ -106,7 +107,7 @@ class Util
     {
         $arr = preg_split('/(?=[A-Z])/', $className);
         unset($arr[0]); // remove the first element ('')
-        $fileName = static::getCurrentTimestamp() . '_' . strtolower(implode($arr, '_')) . '.php';
+        $fileName = static::getCurrentTimestamp() . '_' . strtolower(implode('_', $arr)) . '.php';
         return $fileName;
     }
 
@@ -161,7 +162,7 @@ class Util
      */
     public static function isValidPhinxClassName($className)
     {
-        return (bool) preg_match('/^([A-Z][a-z0-9]+)+$/', $className);
+        return (bool)preg_match('/^([A-Z][a-z0-9]+)+$/', $className);
     }
 
     /**
