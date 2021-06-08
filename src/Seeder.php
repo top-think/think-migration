@@ -14,5 +14,11 @@ use Phinx\Seed\AbstractSeed;
 
 class Seeder extends AbstractSeed
 {
-
+    /**
+     * @return Factory
+     */
+    public function factory()
+    {
+        return app(Factory::class);
+    }
 }
