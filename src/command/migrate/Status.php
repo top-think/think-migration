@@ -70,13 +70,6 @@ EOT
 
             foreach ($this->getMigrations() as $migration) {
                 $version = array_key_exists($migration->getVersion(), $versions) ? $versions[$migration->getVersion()] : false;
-                $start_time = $end_time   = "";
-                if (isset($version['start_time'])) {
-                    $start_time = $version['start_time'];
-                }
-                if (isset($version['end_time'])) {
-                    $end_time = $version['end_time'];
-                }
                 if ($version) {
                     $status = '     <info>up</info> ';
                 } else {
@@ -84,7 +77,7 @@ EOT
                 }
                 $maxNameLength = max($maxNameLength, strlen($migration->getName()));
 
-                $output->writeln(sprintf('%s %14.0f  %19s  %19s  <comment>%s</comment>', $status, $migration->getVersion(),  $start_time, $end_time, $migration->getName()));
+                $output->writeln(sprintf('%s %14.0f  %19s  %19s  <comment>%s</comment>', $status, $migration->getVersion(), $version->start_time, $version->end_time, $migration->getName()));
 
                 if ($version && $version['breakpoint']) {
                     $output->writeln('         <error>BREAKPOINT SET</error>');
