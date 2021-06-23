@@ -9,7 +9,6 @@ use think\App;
 
 class Creator
 {
-
     protected $app;
 
     public function __construct(App $app)
