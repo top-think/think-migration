@@ -463,11 +463,11 @@ class SqlServerAdapter extends PdoAdapter implements AdapterInterface
         $this->renameDefault($tableName, $columnName, $newColumnName);
         $this->execute(
             sprintf(
-                 "EXECUTE sp_rename N'%s.%s', N'%s', 'COLUMN' ",
-                 $tableName,
-                 $columnName,
-                 $newColumnName
-             )
+                "EXECUTE sp_rename N'%s.%s', N'%s', 'COLUMN' ",
+                $tableName,
+                $columnName,
+                $newColumnName
+            )
         );
         $this->endCommandTimer();
     }
