@@ -85,11 +85,11 @@ class FactoryBuilder
      *
      * @param string $class
      * @param string $name
-     * @param array  $definitions
-     * @param array  $states
-     * @param array  $afterMaking
-     * @param array  $afterCreating
-     * @param Faker  $faker
+     * @param array $definitions
+     * @param array $states
+     * @param array $afterMaking
+     * @param array $afterCreating
+     * @param Faker $faker
      * @return void
      */
     public function __construct($class, $name, array $definitions, array $states,
@@ -283,9 +283,12 @@ class FactoryBuilder
      */
     protected function makeInstance(array $attributes = [])
     {
-        return new $this->class(
-            $this->getRawAttributes($attributes)
-        );
+        /** @var Model $model */
+        $model = new $this->class;
+
+        $model->setAttrs($this->getRawAttributes($attributes));
+
+        return $model;
     }
 
     /**
@@ -319,7 +322,7 @@ class FactoryBuilder
      * Get the state attributes.
      *
      * @param string $state
-     * @param array  $attributes
+     * @param array $attributes
      * @return array
      */
     protected function stateAttributes($state, array $attributes)
@@ -386,7 +389,7 @@ class FactoryBuilder
     /**
      * Call after callbacks for each model and state.
      *
-     * @param array      $afterCallbacks
+     * @param array $afterCallbacks
      * @param Collection $models
      * @return void
      */
@@ -404,8 +407,8 @@ class FactoryBuilder
     /**
      * Call after callbacks for each model and state.
      *
-     * @param array  $afterCallbacks
-     * @param Model  $model
+     * @param array $afterCallbacks
+     * @param Model $model
      * @param string $state
      * @return void
      */
