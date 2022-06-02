@@ -41,7 +41,10 @@ abstract class Migrate extends Command
 
         $startTime = time();
         $direction = (MigrationInterface::UP === $direction) ? MigrationInterface::UP : MigrationInterface::DOWN;
-        $migration->setAdapter($this->getAdapter());
+        
+        if (!$migration->getAdapter()) {
+            $migration->setAdapter($this->getAdapter());
+        }
 
         // begin the transaction if the adapter supports it
         if ($this->getAdapter()->hasTransactions()) {
