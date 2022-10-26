@@ -15,7 +15,6 @@ use Phinx\Db\Adapter\AdapterFactory;
 
 abstract class Command extends \think\console\Command
 {
-
     public function getAdapter()
     {
         if (isset($this->adapter)) {
