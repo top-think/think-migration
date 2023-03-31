@@ -95,7 +95,13 @@ abstract class Migrate extends Command
     protected function getMigrations()
     {
         if (null === $this->migrations) {
-            $phpFiles = glob($this->getPath() . DIRECTORY_SEPARATOR . '*.php', defined('GLOB_BRACE') ? GLOB_BRACE : 0);
+            // $phpFiles = glob($this->getPath() . DIRECTORY_SEPARATOR . '*.php', defined('GLOB_BRACE') ? GLOB_BRACE : 0);
+            /**
+             * @var \think\migration\MigratorProvider $migrator
+             */
+            $migrator = $this->app->get('migration.migrator');
+
+            $phpFiles = $migrator->getMigrationFiles(array_merge([$this->getPath()], $migrator->paths()));
 
             // filter the files to only get the ones that match our naming scheme
             $fileNames = [];
