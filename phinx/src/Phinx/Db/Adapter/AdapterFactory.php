@@ -65,6 +65,7 @@ class AdapterFactory
         'pgsql'  => 'Phinx\Db\Adapter\PostgresAdapter',
         'sqlite' => 'Phinx\Db\Adapter\SQLiteAdapter',
         'sqlsrv' => 'Phinx\Db\Adapter\SqlServerAdapter',
+        'dm'     => 'Phinx\Db\Adapter\DmAdapter',
     );
 
     /**
