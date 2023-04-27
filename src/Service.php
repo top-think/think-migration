@@ -24,7 +24,6 @@ use think\migration\command\seed\Run as SeedRun;
 
 class Service extends \think\Service
 {
-
     public function boot()
     {
         $this->app->bind(FakerGenerator::class, function () {

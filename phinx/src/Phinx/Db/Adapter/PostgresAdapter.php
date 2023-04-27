@@ -173,7 +173,7 @@ class PostgresAdapter extends PdoAdapter implements AdapterInterface
         $this->startCommandTimer();
         $options = $table->getOptions();
 
-         // Add the default primary key
+        // Add the default primary key
         $columns = $table->getPendingColumns();
         if (!isset($options['id']) || (isset($options['id']) && $options['id'] === true)) {
             $column = new Column();
@@ -183,7 +183,6 @@ class PostgresAdapter extends PdoAdapter implements AdapterInterface
 
             array_unshift($columns, $column);
             $options['primary_key'] = 'id';
-
         } elseif (isset($options['id']) && is_string($options['id'])) {
             // Handle id => "field_name" to support AUTO_INCREMENT
             $column = new Column();
@@ -209,7 +208,7 @@ class PostgresAdapter extends PdoAdapter implements AdapterInterface
             }
         }
 
-         // set the primary key(s)
+        // set the primary key(s)
         if (isset($options['primary_key'])) {
             $sql = rtrim($sql);
             $sql .= sprintf(' CONSTRAINT %s_pkey PRIMARY KEY (', $table->getName());
@@ -344,7 +343,8 @@ class PostgresAdapter extends PdoAdapter implements AdapterInterface
      */
     public function hasColumn($tableName, $columnName, $options = array())
     {
-        $sql = sprintf("SELECT count(*)
+        $sql = sprintf(
+            "SELECT count(*)
             FROM information_schema.columns
             WHERE table_schema = '%s' AND table_name = '%s' AND column_name = '%s'",
             $this->getSchemaName(),
@@ -446,8 +446,7 @@ class PostgresAdapter extends PdoAdapter implements AdapterInterface
                     $this->getDefaultValueDefinition($newColumn->getDefault())
                 )
             );
-        }
-        else {
+        } else {
             //drop default
             $this->execute(
                 sprintf(
@@ -772,10 +771,10 @@ class PostgresAdapter extends PdoAdapter implements AdapterInterface
             case static::PHINX_TYPE_BLOB:
             case static::PHINX_TYPE_BINARY:
                 return array('name' => 'bytea');
-            // Geospatial database types
-            // Spatial storage in Postgres is done via the PostGIS extension,
-            // which enables the use of the "geography" type in combination
-            // with SRID 4326.
+                // Geospatial database types
+                // Spatial storage in Postgres is done via the PostGIS extension,
+                // which enables the use of the "geography" type in combination
+                // with SRID 4326.
             case static::PHINX_TYPE_GEOMETRY:
                 return array('name' => 'geography', 'geometry', 4326);
                 break;

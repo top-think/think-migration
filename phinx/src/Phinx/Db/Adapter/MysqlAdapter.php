@@ -40,7 +40,6 @@ use Phinx\Db\Table\ForeignKey;
  */
 class MysqlAdapter extends PdoAdapter implements AdapterInterface
 {
-
     protected $signedColumnTypes = array('integer' => true, 'biginteger' => true, 'float' => true, 'decimal' => true, 'boolean' => true);
 
     const TEXT_TINY    = 255;
@@ -189,7 +188,8 @@ class MysqlAdapter extends PdoAdapter implements AdapterInterface
             "SELECT TABLE_NAME
             FROM INFORMATION_SCHEMA.TABLES
             WHERE TABLE_SCHEMA = '%s' AND TABLE_NAME = '%s'",
-            $options['name'], $tableName
+            $options['name'],
+            $tableName
         ));
 
         return !empty($exists);
@@ -333,7 +333,6 @@ class MysqlAdapter extends PdoAdapter implements AdapterInterface
         $columns = array();
         $rows = $this->fetchAll(sprintf('SHOW COLUMNS FROM %s', $this->quoteTableName($tableName)));
         foreach ($rows as $columnInfo) {
-
             $phinxType = $this->getPhinxType($columnInfo['Type']);
 
             $column = new Column();
@@ -530,7 +529,7 @@ class MysqlAdapter extends PdoAdapter implements AdapterInterface
 
         foreach ($indexes as $name => $index) {
             if ($name === $indexName) {
-                 return true;
+                return true;
             }
         }
 
@@ -832,7 +831,7 @@ class MysqlAdapter extends PdoAdapter implements AdapterInterface
                 break;
             case static::PHINX_TYPE_UUID:
                 return array('name' => 'char', 'limit' => 36);
-            // Geospatial database types
+                // Geospatial database types
             case static::PHINX_TYPE_GEOMETRY:
             case static::PHINX_TYPE_POINT:
             case static::PHINX_TYPE_LINESTRING:
@@ -845,8 +844,9 @@ class MysqlAdapter extends PdoAdapter implements AdapterInterface
                 return array('name' => 'set');
                 break;
             case static::TYPE_YEAR:
-                if (!$limit || in_array($limit, array(2, 4)))
+                if (!$limit || in_array($limit, array(2, 4))) {
                     $limit = 4;
+                }
                 return array('name' => 'year', 'limit' => $limit);
                 break;
             case static::PHINX_TYPE_JSON:

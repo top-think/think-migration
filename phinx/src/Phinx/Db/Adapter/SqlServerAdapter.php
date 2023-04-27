@@ -216,7 +216,6 @@ class SqlServerAdapter extends PdoAdapter implements AdapterInterface
 
             array_unshift($columns, $column);
             $options['primary_key'] = 'id';
-
         } elseif (isset($options['id']) && is_string($options['id'])) {
             // Handle id => "field_name" to support AUTO_INCREMENT
             $column = new Column();
@@ -463,12 +462,12 @@ class SqlServerAdapter extends PdoAdapter implements AdapterInterface
         $this->writeCommand('renameColumn', array($tableName, $columnName, $newColumnName));
         $this->renameDefault($tableName, $columnName, $newColumnName);
         $this->execute(
-             sprintf(
-                 "EXECUTE sp_rename N'%s.%s', N'%s', 'COLUMN' ",
-                 $tableName,
-                 $columnName,
-                 $newColumnName
-             )
+            sprintf(
+                "EXECUTE sp_rename N'%s.%s', N'%s', 'COLUMN' ",
+                $tableName,
+                $columnName,
+                $newColumnName
+            )
         );
         $this->endCommandTimer();
     }
@@ -619,7 +618,7 @@ ORDER BY IC.[key_ordinal];";
 
         $rows = $this->fetchAll($sql);
         $columns = array();
-        foreach($rows as $row) {
+        foreach ($rows as $row) {
             $columns[] = strtolower($row['column_name']);
         }
         return $columns;
@@ -681,7 +680,7 @@ ORDER BY T.[name], I.[index_id];";
 
         foreach ($indexes as $name => $index) {
             if ($name === $indexName) {
-                 return true;
+                return true;
             }
         }
 
@@ -925,7 +924,7 @@ ORDER BY T.[name], I.[index_id];";
                 return array('name' => 'uniqueidentifier');
             case static::PHINX_TYPE_FILESTREAM:
                 return array('name' => 'varbinary', 'limit' => 'max');
-            // Geospatial database types
+                // Geospatial database types
             case static::PHINX_TYPE_GEOMETRY:
             case static::PHINX_TYPE_POINT:
             case static::PHINX_TYPE_LINESTRING:

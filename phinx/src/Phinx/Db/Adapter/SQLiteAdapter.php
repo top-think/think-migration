@@ -175,7 +175,6 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
                    ->setIdentity(true);
 
             array_unshift($columns, $column);
-
         } elseif (isset($options['id']) && is_string($options['id'])) {
             // Handle id => "field_name" to support AUTO_INCREMENT
             $column = new Column();
@@ -380,7 +379,6 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
      */
     public function changeColumn($tableName, $columnName, Column $newColumn)
     {
-
         // TODO: DRY this up....
 
         $this->startCommandTimer();
@@ -683,7 +681,6 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
 
         foreach ($rows as $row) {
             if ($row['tbl_name'] === $tableName) {
-
                 if (strpos($row['sql'], 'REFERENCES') !== false) {
                     preg_match_all("/\(`([^`]*)`\) REFERENCES/", $row['sql'], $matches);
                     foreach ($matches[1] as $match) {
@@ -823,11 +820,11 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
         $sql .= " VALUES ";
 
         $sql .= "(" . implode(', ', array_map(function ($value) {
-                if (is_numeric($value)) {
-                    return $value;
-                }
-                return "'{$value}'";
-            }, $row)) . ")";
+            if (is_numeric($value)) {
+                return $value;
+            }
+            return "'{$value}'";
+        }, $row)) . ")";
 
         $this->execute($sql);
         $this->endCommandTimer();
@@ -883,9 +880,9 @@ class SQLiteAdapter extends PdoAdapter implements AdapterInterface
                 return array('name' => 'char', 'limit' => 36);
             case static::PHINX_TYPE_ENUM:
                 return array('name' => 'enum');
-            // Geospatial database types
-            // No specific data types exist in SQLite, instead all geospatial
-            // functionality is handled in the client. See also: SpatiaLite.
+                // Geospatial database types
+                // No specific data types exist in SQLite, instead all geospatial
+                // functionality is handled in the client. See also: SpatiaLite.
             case static::PHINX_TYPE_GEOMETRY:
             case static::PHINX_TYPE_POLYGON:
                 return array('name' => 'text');
