@@ -211,7 +211,9 @@ abstract class PdoAdapter implements AdapterInterface
             $table = new Table($this->getSchemaTableName(), array(), $this);
             if (!$table->hasColumn('migration_name')) {
                 $table
-                    ->addColumn('migration_name', 'string',
+                    ->addColumn(
+                        'migration_name',
+                        'string',
                         array('limit' => 100, 'after' => 'version', 'default' => null, 'null' => true)
                     )
                     ->save();
@@ -569,7 +571,8 @@ abstract class PdoAdapter implements AdapterInterface
     /**
      * {@inheritdoc}
      */
-    public function isValidColumnType(Column $column) {
+    public function isValidColumnType(Column $column)
+    {
         return in_array($column->getType(), $this->getColumnTypes());
     }
 
