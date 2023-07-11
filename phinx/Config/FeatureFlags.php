@@ -32,10 +32,10 @@ class FeatureFlags
     public static function setFlagsFromConfig(array $config): void
     {
         if (isset($config['unsigned_primary_keys'])) {
-            self::$unsignedPrimaryKeys = (bool)$config['unsigned_primary_keys'];
+            self::$unsignedPrimaryKeys = (bool) $config['unsigned_primary_keys'];
         }
         if (isset($config['column_null_default'])) {
-            self::$columnNullDefault = (bool)$config['column_null_default'];
+            self::$columnNullDefault = (bool) $config['column_null_default'];
         }
     }
 }

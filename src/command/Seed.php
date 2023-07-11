@@ -19,7 +19,6 @@ use think\migration\Seeder;
 
 abstract class Seed extends Command
 {
-
     /**
      * @var array
      */

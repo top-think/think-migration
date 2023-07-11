@@ -249,7 +249,7 @@ class SqlServerAdapter extends PdoAdapter
                    ->setOptions(['identity' => true]);
 
             array_unshift($columns, $column);
-            if (isset($options['primary_key']) && (array)$options['id'] !== (array)$options['primary_key']) {
+            if (isset($options['primary_key']) && (array) $options['id'] !== (array) $options['primary_key']) {
                 throw new InvalidArgumentException('You cannot enable an auto incrementing ID field and a primary key');
             }
             $options['primary_key'] = $options['id'];
@@ -506,7 +506,7 @@ class SqlServerAdapter extends PdoAdapter
         if (strtoupper($result) === 'NULL') {
             $result = null;
         } elseif (is_numeric($result)) {
-            $result = (int)$result;
+            $result = (int) $result;
         }
 
         return $result;
@@ -800,7 +800,7 @@ ORDER BY T.[name], I.[index_id];";
 
         foreach ($indexes as $name => $index) {
             if ($name === $indexName) {
-                 return true;
+                return true;
             }
         }
 
@@ -1097,7 +1097,7 @@ ORDER BY T.[name], I.[index_id];";
                 return ['name' => 'uniqueidentifier'];
             case static::PHINX_TYPE_FILESTREAM:
                 return ['name' => 'varbinary', 'limit' => 'max'];
-            // Geospatial database types
+                // Geospatial database types
             case static::PHINX_TYPE_GEOGRAPHY:
             case static::PHINX_TYPE_POINT:
             case static::PHINX_TYPE_LINESTRING:
@@ -1105,7 +1105,7 @@ ORDER BY T.[name], I.[index_id];";
                 // SQL Server stores all spatial data using a single data type.
                 // Specific types (point, polygon, etc) are set at insert time.
                 return ['name' => 'geography'];
-            // Geometry specific type
+                // Geometry specific type
             case static::PHINX_TYPE_GEOMETRY:
                 return ['name' => 'geometry'];
             default:
@@ -1226,7 +1226,7 @@ SQL;
     {
         $buffer = [];
         if ($column->getType() instanceof Literal) {
-            $buffer[] = (string)$column->getType();
+            $buffer[] = (string) $column->getType();
         } else {
             $sqlType = $this->getSqlType($column->getType());
             $buffer[] = strtoupper($sqlType['name']);
