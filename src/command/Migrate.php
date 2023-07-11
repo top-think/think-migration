@@ -135,7 +135,7 @@ abstract class Migrate extends Command
                     }
 
                     // instantiate it
-                    $migration = new $class('default', $version, $this->input, $this->output);
+                    $migration = new $class('default', $version);
 
                     if (!($migration instanceof AbstractMigration)) {
                         throw new \InvalidArgumentException(sprintf('The class "%s" in file "%s" must extend \Phinx\Migration\AbstractMigration', $class, $filePath));
