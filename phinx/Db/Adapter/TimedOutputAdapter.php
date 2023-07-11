@@ -12,7 +12,7 @@ use Phinx\Db\Table\Column;
 use Phinx\Db\Table\ForeignKey;
 use Phinx\Db\Table\Index;
 use Phinx\Db\Table\Table;
-use Symfony\Component\Console\Output\OutputInterface;
+use think\console\Output as OutputInterface;
 
 /**
  * Wraps any adapter to record the time spend executing its commands

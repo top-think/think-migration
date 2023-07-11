@@ -13,8 +13,8 @@ use Phinx\Db\Adapter\AdapterInterface;
 use Phinx\Migration\MigrationInterface;
 use Phinx\Seed\SeedInterface;
 use RuntimeException;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use think\console\Input as InputInterface;
+use think\console\Output as OutputInterface;
 
 class Environment
 {
@@ -29,12 +29,12 @@ class Environment
     protected $options;
 
     /**
-     * @var \Symfony\Component\Console\Input\InputInterface|null
+     * @var \think\console\Input|null
      */
     protected $input;
 
     /**
-     * @var \Symfony\Component\Console\Output\OutputInterface|null
+     * @var \think\console\Output|null
      */
     protected $output;
 
@@ -201,7 +201,7 @@ class Environment
     /**
      * Sets the console input.
      *
-     * @param \Symfony\Component\Console\Input\InputInterface $input Input
+     * @param \think\console\Input $input Input
      * @return $this
      */
     public function setInput(InputInterface $input)
@@ -214,7 +214,7 @@ class Environment
     /**
      * Gets the console input.
      *
-     * @return \Symfony\Component\Console\Input\InputInterface|null
+     * @return \think\console\Input|null
      */
     public function getInput(): ?InputInterface
     {
@@ -224,7 +224,7 @@ class Environment
     /**
      * Sets the console output.
      *
-     * @param \Symfony\Component\Console\Output\OutputInterface $output Output
+     * @param \think\console\Output $output Output
      * @return $this
      */
     public function setOutput(OutputInterface $output)
@@ -237,7 +237,7 @@ class Environment
     /**
      * Gets the console output.
      *
-     * @return \Symfony\Component\Console\Output\OutputInterface|null
+     * @return \think\console\Output|null
      */
     public function getOutput(): ?OutputInterface
     {
@@ -350,13 +350,13 @@ class Environment
                 ->getWrapper($options['wrapper'], $adapter);
         }
 
-        /** @var \Symfony\Component\Console\Input\InputInterface|null $input */
+        /** @var \think\console\Input|null $input */
         $input = $this->getInput();
         if ($input) {
             $adapter->setInput($this->getInput());
         }
 
-        /** @var \Symfony\Component\Console\Output\OutputInterface|null $output */
+        /** @var \think\console\Output|null $output */
         $output = $this->getOutput();
         if ($output) {
             $adapter->setOutput($this->getOutput());

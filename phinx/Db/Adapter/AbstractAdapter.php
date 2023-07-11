@@ -12,9 +12,9 @@ use InvalidArgumentException;
 use Phinx\Db\Table;
 use Phinx\Db\Table\Column;
 use Phinx\Util\Literal;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\NullOutput;
-use Symfony\Component\Console\Output\OutputInterface;
+use think\console\Input as InputInterface;
+use think\migration\NullOutput;
+use think\console\Output as OutputInterface;
 
 /**
  * Base Abstract Database Adapter.
@@ -27,12 +27,12 @@ abstract class AbstractAdapter implements AdapterInterface
     protected $options = [];
 
     /**
-     * @var \Symfony\Component\Console\Input\InputInterface|null
+     * @var \think\console\Input|null
      */
     protected $input;
 
     /**
-     * @var \Symfony\Component\Console\Output\OutputInterface
+     * @var \think\console\Output
      */
     protected $output;
 
@@ -55,8 +55,8 @@ abstract class AbstractAdapter implements AdapterInterface
      * Class Constructor.
      *
      * @param array<string, mixed> $options Options
-     * @param \Symfony\Component\Console\Input\InputInterface|null $input Input Interface
-     * @param \Symfony\Component\Console\Output\OutputInterface|null $output Output Interface
+     * @param \think\console\Input|null $input Input Interface
+     * @param \think\console\Output|null $output Output Interface
      */
     public function __construct(array $options, ?InputInterface $input = null, ?OutputInterface $output = null)
     {
@@ -345,7 +345,7 @@ abstract class AbstractAdapter implements AdapterInterface
      */
     public function isDryRunEnabled(): bool
     {
-        /** @var \Symfony\Component\Console\Input\InputInterface|null $input */
+        /** @var \think\console\Input|null $input */
         $input = $this->getInput();
 
         return $input && $input->hasOption('dry-run') ? (bool)$input->getOption('dry-run') : false;

@@ -11,8 +11,8 @@ use DateTime;
 use DateTimeZone;
 use Exception;
 use RuntimeException;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use think\console\Input as InputInterface;
+use think\console\Output as OutputInterface;
 
 class Util
 {
@@ -230,8 +230,8 @@ class Util
      * Takes the path to a php file and attempts to include it if readable
      *
      * @param string $filename Filename
-     * @param \Symfony\Component\Console\Input\InputInterface|null $input Input
-     * @param \Symfony\Component\Console\Output\OutputInterface|null $output Output
+     * @param \think\console\Input|null $input Input
+     * @param \think\console\Output|null $output Output
      * @param \Phinx\Console\Command\AbstractCommand|mixed|null $context Context
      * @throws \Exception
      * @return string

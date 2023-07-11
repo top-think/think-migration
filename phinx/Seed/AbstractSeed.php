@@ -9,8 +9,8 @@ namespace Phinx\Seed;
 
 use Phinx\Db\Adapter\AdapterInterface;
 use Phinx\Db\Table;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use think\console\Input as InputInterface;
+use think\console\Output as OutputInterface;
 
 /**
  * Abstract Seed Class.
@@ -35,12 +35,12 @@ abstract class AbstractSeed implements SeedInterface
     protected $adapter;
 
     /**
-     * @var \Symfony\Component\Console\Input\InputInterface
+     * @var \think\console\Input
      */
     protected $input;
 
     /**
-     * @var \Symfony\Component\Console\Output\OutputInterface
+     * @var \think\console\Output
      */
     protected $output;
 

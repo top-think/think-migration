@@ -11,8 +11,8 @@ use Cake\Database\Query;
 use Phinx\Db\Table\Column;
 use Phinx\Db\Table\Table;
 use Phinx\Migration\MigrationInterface;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use think\console\Input as InputInterface;
+use think\console\Output as OutputInterface;
 
 /**
  * Adapter Interface.
@@ -125,7 +125,7 @@ interface AdapterInterface
     /**
      * Sets the console input.
      *
-     * @param \Symfony\Component\Console\Input\InputInterface $input Input
+     * @param \think\console\Input $input Input
      * @return $this
      */
     public function setInput(InputInterface $input);
@@ -133,14 +133,14 @@ interface AdapterInterface
     /**
      * Gets the console input.
      *
-     * @return \Symfony\Component\Console\Input\InputInterface|null
+     * @return \think\console\Input|null
      */
     public function getInput(): ?InputInterface;
 
     /**
      * Sets the console output.
      *
-     * @param \Symfony\Component\Console\Output\OutputInterface $output Output
+     * @param \think\console\Output $output Output
      * @return $this
      */
     public function setOutput(OutputInterface $output);
@@ -148,7 +148,7 @@ interface AdapterInterface
     /**
      * Gets the console output.
      *
-     * @return \Symfony\Component\Console\Output\OutputInterface
+     * @return \think\console\Output
      */
     public function getOutput(): OutputInterface;
 

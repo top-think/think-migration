@@ -32,6 +32,9 @@ abstract class Command extends \think\console\Command
             $adapter = AdapterFactory::instance()->getWrapper('prefix', $adapter);
         }
 
+        $adapter->setInput($this->input);
+        $adapter->setOutput($this->output);
+
         $this->adapter = $adapter;
 
         return $adapter;

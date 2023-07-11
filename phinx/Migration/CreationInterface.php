@@ -7,8 +7,8 @@
 
 namespace Phinx\Migration;
 
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use think\console\Input as InputInterface;
+use think\console\Output as OutputInterface;
 
 /**
  * Migration interface
@@ -18,30 +18,30 @@ use Symfony\Component\Console\Output\OutputInterface;
 interface CreationInterface
 {
     /**
-     * @param \Symfony\Component\Console\Input\InputInterface|null $input Input
-     * @param \Symfony\Component\Console\Output\OutputInterface|null $output Output
+     * @param \think\console\Input|null $input Input
+     * @param \think\console\Output|null $output Output
      */
     public function __construct(?InputInterface $input = null, ?OutputInterface $output = null);
 
     /**
-     * @param \Symfony\Component\Console\Input\InputInterface $input Input
+     * @param \think\console\Input $input Input
      * @return $this
      */
     public function setInput(InputInterface $input);
 
     /**
-     * @param \Symfony\Component\Console\Output\OutputInterface $output Output
+     * @param \think\console\Output $output Output
      * @return $this
      */
     public function setOutput(OutputInterface $output);
 
     /**
-     * @return \Symfony\Component\Console\Input\InputInterface
+     * @return \think\console\Input
      */
     public function getInput(): InputInterface;
 
     /**
-     * @return \Symfony\Component\Console\Output\OutputInterface
+     * @return \think\console\Output
      */
     public function getOutput(): OutputInterface;
 

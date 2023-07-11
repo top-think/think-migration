@@ -24,9 +24,4 @@ class Migrator extends AbstractMigration
     {
         return new Table($tableName, $options, $this->getAdapter());
     }
-
-    public function preFlightCheck(): void
-    {
-
-    }
 }

@@ -79,6 +79,18 @@ class UsePhinx
 
                     try {
                         $fs->copy($file, $dest, $overwriteNewerFiles);
+
+                        // replace namespace
+                        $content  = file_get_contents($dest);
+                        $replaces = [
+                            'use Symfony\Component\Console\Input\InputInterface;'   => 'use think\console\Input as InputInterface;',
+                            'use Symfony\Component\Console\Output\OutputInterface;' => 'use think\console\Output as OutputInterface;',
+                            '\Symfony\Component\Console\Output\OutputInterface'     => '\think\console\Output',
+                            '\Symfony\Component\Console\Input\InputInterface'       => '\think\console\Input',
+                            'use Symfony\Component\Console\Output\NullOutput;'      => 'use think\migration\NullOutput;',
+                        ];
+                        $content  = str_replace(array_keys($replaces), array_values($replaces), $content);
+                        file_put_contents($dest, $content);
                     } catch (IOException $e) {
                         throw new \InvalidArgumentException(sprintf('<error>Could not copy %s</error>', $file->getBaseName()), $e->getCode(), $e);
                     }

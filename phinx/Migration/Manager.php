@@ -19,8 +19,8 @@ use Phinx\Seed\SeedInterface;
 use Phinx\Util\Util;
 use Psr\Container\ContainerInterface;
 use RuntimeException;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use think\console\Input as InputInterface;
+use think\console\Output as OutputInterface;
 
 class Manager
 {
@@ -34,12 +34,12 @@ class Manager
     protected $config;
 
     /**
-     * @var \Symfony\Component\Console\Input\InputInterface
+     * @var \think\console\Input
      */
     protected $input;
 
     /**
-     * @var \Symfony\Component\Console\Output\OutputInterface
+     * @var \think\console\Output
      */
     protected $output;
 
@@ -70,8 +70,8 @@ class Manager
 
     /**
      * @param \Phinx\Config\ConfigInterface $config Configuration Object
-     * @param \Symfony\Component\Console\Input\InputInterface $input Console Input
-     * @param \Symfony\Component\Console\Output\OutputInterface $output Console Output
+     * @param \think\console\Input $input Console Input
+     * @param \think\console\Output $output Console Output
      */
     public function __construct(ConfigInterface $config, InputInterface $input, OutputInterface $output)
     {
@@ -685,7 +685,7 @@ class Manager
     /**
      * Sets the console input.
      *
-     * @param \Symfony\Component\Console\Input\InputInterface $input Input
+     * @param \think\console\Input $input Input
      * @return $this
      */
     public function setInput(InputInterface $input)
@@ -698,7 +698,7 @@ class Manager
     /**
      * Gets the console input.
      *
-     * @return \Symfony\Component\Console\Input\InputInterface
+     * @return \think\console\Input
      */
     public function getInput(): InputInterface
     {
@@ -708,7 +708,7 @@ class Manager
     /**
      * Sets the console output.
      *
-     * @param \Symfony\Component\Console\Output\OutputInterface $output Output
+     * @param \think\console\Output $output Output
      * @return $this
      */
     public function setOutput(OutputInterface $output)
@@ -721,7 +721,7 @@ class Manager
     /**
      * Gets the console output.
      *
-     * @return \Symfony\Component\Console\Output\OutputInterface
+     * @return \think\console\Output
      */
     public function getOutput(): OutputInterface
     {

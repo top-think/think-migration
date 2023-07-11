@@ -7,24 +7,24 @@
 
 namespace Phinx\Migration;
 
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use think\console\Input as InputInterface;
+use think\console\Output as OutputInterface;
 
 abstract class AbstractTemplateCreation implements CreationInterface
 {
     /**
-     * @var \Symfony\Component\Console\Input\InputInterface
+     * @var \think\console\Input
      */
     protected $input;
 
     /**
-     * @var \Symfony\Component\Console\Output\OutputInterface
+     * @var \think\console\Output
      */
     protected $output;
 
     /**
-     * @param \Symfony\Component\Console\Input\InputInterface|null $input Input
-     * @param \Symfony\Component\Console\Output\OutputInterface|null $output Output
+     * @param \think\console\Input|null $input Input
+     * @param \think\console\Output|null $output Output
      */
     public function __construct(?InputInterface $input = null, ?OutputInterface $output = null)
     {

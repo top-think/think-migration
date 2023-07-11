@@ -11,8 +11,8 @@ use Cake\Database\Query;
 use Phinx\Db\Adapter\AdapterInterface;
 use Phinx\Db\Table;
 use RuntimeException;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use think\console\Input as InputInterface;
+use think\console\Output as OutputInterface;
 
 /**
  * Abstract Migration Class.
@@ -42,12 +42,12 @@ abstract class AbstractMigration implements MigrationInterface
     protected $adapter;
 
     /**
-     * @var \Symfony\Component\Console\Output\OutputInterface|null
+     * @var \think\console\Output|null
      */
     protected $output;
 
     /**
-     * @var \Symfony\Component\Console\Input\InputInterface|null
+     * @var \think\console\Input|null
      */
     protected $input;
 
@@ -68,8 +68,8 @@ abstract class AbstractMigration implements MigrationInterface
     /**
      * @param string $environment Environment Detected
      * @param int $version Migration Version
-     * @param \Symfony\Component\Console\Input\InputInterface|null $input Input
-     * @param \Symfony\Component\Console\Output\OutputInterface|null $output Output
+     * @param \think\console\Input|null $input Input
+     * @param \think\console\Output|null $output Output
      */
     final public function __construct(string $environment, int $version, ?InputInterface $input = null, ?OutputInterface $output = null)
     {

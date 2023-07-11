@@ -10,8 +10,8 @@ namespace Phinx\Migration;
 use Cake\Database\Query;
 use Phinx\Db\Adapter\AdapterInterface;
 use Phinx\Db\Table;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use think\console\Input as InputInterface;
+use think\console\Output as OutputInterface;
 
 /**
  * Migration interface
@@ -58,7 +58,7 @@ interface MigrationInterface
     /**
      * Sets the input object to be used in migration object
      *
-     * @param \Symfony\Component\Console\Input\InputInterface $input Input
+     * @param \think\console\Input $input Input
      * @return $this
      */
     public function setInput(InputInterface $input);
@@ -66,14 +66,14 @@ interface MigrationInterface
     /**
      * Gets the input object to be used in migration object
      *
-     * @return \Symfony\Component\Console\Input\InputInterface|null
+     * @return \think\console\Input|null
      */
     public function getInput(): ?InputInterface;
 
     /**
      * Sets the output object to be used in migration object
      *
-     * @param \Symfony\Component\Console\Output\OutputInterface $output Output
+     * @param \think\console\Output $output Output
      * @return $this
      */
     public function setOutput(OutputInterface $output);
@@ -81,7 +81,7 @@ interface MigrationInterface
     /**
      * Gets the output object to be used in migration object
      *
-     * @return \Symfony\Component\Console\Output\OutputInterface|null
+     * @return \think\console\Output|null
      */
     public function getOutput(): ?OutputInterface;
 
