@@ -109,7 +109,7 @@ class PostgresAdapter extends PdoAdapter
                 );
             }
 
-            $this->useIdentity = (float)$db->getAttribute(PDO::ATTR_SERVER_VERSION) >= 10;
+            $this->useIdentity = (float) $db->getAttribute(PDO::ATTR_SERVER_VERSION) >= 10;
 
             $this->setConnection($db);
         }
@@ -218,7 +218,7 @@ class PostgresAdapter extends PdoAdapter
         $options = $table->getOptions();
         $parts = $this->getSchemaName($table->getName());
 
-         // Add the default primary key
+        // Add the default primary key
         if (!isset($options['id']) || (isset($options['id']) && $options['id'] === true)) {
             $options['id'] = 'id';
         }
@@ -231,7 +231,7 @@ class PostgresAdapter extends PdoAdapter
                    ->setOptions(['identity' => true]);
 
             array_unshift($columns, $column);
-            if (isset($options['primary_key']) && (array)$options['id'] !== (array)$options['primary_key']) {
+            if (isset($options['primary_key']) && (array) $options['id'] !== (array) $options['primary_key']) {
                 throw new InvalidArgumentException('You cannot enable an auto incrementing ID field and a primary key');
             }
             $options['primary_key'] = $options['id'];
@@ -255,7 +255,7 @@ class PostgresAdapter extends PdoAdapter
             }
         }
 
-         // set the primary key(s)
+        // set the primary key(s)
         if (isset($options['primary_key'])) {
             $sql = rtrim($sql);
             $sql .= sprintf(' CONSTRAINT %s PRIMARY KEY (', $this->quoteColumnName($parts['table'] . '_pkey'));
@@ -552,7 +552,7 @@ class PostgresAdapter extends PdoAdapter
         );
 
         $result = $this->fetchRow($sql);
-        if (!(bool)$result['column_exists']) {
+        if (!(bool) $result['column_exists']) {
             throw new InvalidArgumentException("The specified column does not exist: $columnName");
         }
 
@@ -1081,10 +1081,10 @@ class PostgresAdapter extends PdoAdapter
                 return ['name' => 'bytea'];
             case static::PHINX_TYPE_INTERVAL:
                 return ['name' => 'interval'];
-            // Geospatial database types
-            // Spatial storage in Postgres is done via the PostGIS extension,
-            // which enables the use of the "geography" type in combination
-            // with SRID 4326.
+                // Geospatial database types
+                // Spatial storage in Postgres is done via the PostGIS extension,
+                // which enables the use of the "geography" type in combination
+                // with SRID 4326.
             case static::PHINX_TYPE_GEOMETRY:
                 return ['name' => 'geography', 'type' => 'geometry', 'srid' => 4326];
             case static::PHINX_TYPE_POINT:
@@ -1225,7 +1225,7 @@ class PostgresAdapter extends PdoAdapter
                 $buffer[] = 'SERIAL';
             }
         } elseif ($column->getType() instanceof Literal) {
-            $buffer[] = (string)$column->getType();
+            $buffer[] = (string) $column->getType();
         } else {
             $sqlType = $this->getSqlType($column->getType(), $column->getLimit());
             $buffer[] = strtoupper($sqlType['name']);
@@ -1560,7 +1560,7 @@ class PostgresAdapter extends PdoAdapter
      */
     public function castToBool($value)
     {
-        return (bool)$value ? 'TRUE' : 'FALSE';
+        return (bool) $value ? 'TRUE' : 'FALSE';
     }
 
     /**

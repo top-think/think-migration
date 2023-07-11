@@ -244,7 +244,7 @@ class Column
      */
     public function setNull(bool $null)
     {
-        $this->null = (bool)$null;
+        $this->null = (bool) $null;
 
         return $this;
     }
@@ -547,7 +547,7 @@ class Column
      */
     public function setSigned(bool $signed)
     {
-        $this->signed = (bool)$signed;
+        $this->signed = (bool) $signed;
 
         return $this;
     }
@@ -581,7 +581,7 @@ class Column
      */
     public function setTimezone(bool $timezone)
     {
-        $this->timezone = (bool)$timezone;
+        $this->timezone = (bool) $timezone;
 
         return $this;
     }
