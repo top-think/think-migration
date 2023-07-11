@@ -12,7 +12,6 @@
 namespace think\migration\command;
 
 use Phinx\Db\Adapter\AdapterFactory;
-use Phinx\Db\Adapter\ProxyAdapter;
 use Phinx\Migration\AbstractMigration;
 use Phinx\Migration\MigrationInterface;
 use Phinx\Util\Util;

@@ -16,7 +16,7 @@ use Phinx\Db\Adapter\AdapterFactory;
 abstract class Command extends \think\console\Command
 {
     protected $adapter;
-    
+
     public function getAdapter()
     {
         if (isset($this->adapter)) {
@@ -72,7 +72,7 @@ abstract class Command extends \think\console\Command
 
         $table = $this->app->config->get('database.migration_table', 'migrations');
 
-        $dbConfig['default_migration_table'] = $dbConfig['table_prefix'] . $table;
+        $dbConfig['migration_table'] = $dbConfig['table_prefix'] . $table;
 
         return $dbConfig;
     }
