@@ -18,7 +18,7 @@ class Migrator extends AbstractMigration
     /**
      * @param string $tableName
      * @param array $options
-     * @return \Phinx\Db\Table
+     * @return Table
      */
     public function table($tableName, $options = []): \Phinx\Db\Table
     {
