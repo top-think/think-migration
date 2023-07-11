@@ -295,7 +295,7 @@ class MysqlAdapter extends PdoAdapter
             }
 
             array_unshift($columns, $column);
-            if (isset($options['primary_key']) && (array)$options['id'] !== (array)$options['primary_key']) {
+            if (isset($options['primary_key']) && (array) $options['id'] !== (array) $options['primary_key']) {
                 throw new InvalidArgumentException('You cannot enable an auto incrementing ID field and a primary key');
             }
             $options['primary_key'] = $options['id'];
@@ -339,7 +339,7 @@ class MysqlAdapter extends PdoAdapter
             if (is_string($options['primary_key'])) { // handle primary_key => 'id'
                 $sql .= $this->quoteColumnName($options['primary_key']);
             } elseif (is_array($options['primary_key'])) { // handle primary_key => array('tag_id', 'resource_id')
-                $sql .= implode(',', array_map([$this, 'quoteColumnName'], (array)$options['primary_key']));
+                $sql .= implode(',', array_map([$this, 'quoteColumnName'], (array) $options['primary_key']));
             }
             $sql .= ')';
         } else {
@@ -952,7 +952,7 @@ class MysqlAdapter extends PdoAdapter
             case static::PHINX_TYPE_ENUM:
             case static::PHINX_TYPE_SET:
             case static::PHINX_TYPE_JSON:
-            // Geospatial database types
+                // Geospatial database types
             case static::PHINX_TYPE_GEOMETRY:
             case static::PHINX_TYPE_POINT:
             case static::PHINX_TYPE_LINESTRING:
@@ -1127,10 +1127,10 @@ class MysqlAdapter extends PdoAdapter
         $scale = null;
         $type = $matches[1];
         if (count($matches) > 2) {
-            $limit = $matches[3] ? (int)$matches[3] : null;
+            $limit = $matches[3] ? (int) $matches[3] : null;
         }
         if (count($matches) > 4) {
-            $scale = (int)$matches[5];
+            $scale = (int) $matches[5];
         }
         if ($type === 'tinyint' && $limit === 1) {
             $type = static::PHINX_TYPE_BOOLEAN;
@@ -1339,7 +1339,7 @@ class MysqlAdapter extends PdoAdapter
     protected function getColumnSqlDefinition(Column $column): string
     {
         if ($column->getType() instanceof Literal) {
-            $def = (string)$column->getType();
+            $def = (string) $column->getType();
         } else {
             $sqlType = $this->getSqlType($column->getType(), $column->getLimit());
             $def = strtoupper($sqlType['name']);

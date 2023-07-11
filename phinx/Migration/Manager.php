@@ -529,7 +529,7 @@ class Manager
 
             // check on was found
             if ($found !== false) {
-                $target = (string)$found;
+                $target = (string) $found;
             } else {
                 $this->getOutput()->writeln("<error>No migration found with name ($target)</error>");
 
