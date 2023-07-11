@@ -16,8 +16,9 @@ class UsePhinx
         }
 
         $files = [
-            'vendor/robmorgan/phinx/LICENSE'             => 'phinx/LICENSE',
-            'vendor/robmorgan/phinx/README.md'           => 'phinx/README.md',
+            'vendor/robmorgan/phinx/LICENSE'              => 'phinx/LICENSE',
+            'vendor/robmorgan/phinx/README.md'            => 'phinx/README.md',
+            'vendor/robmorgan/phinx/src/Phinx/Config/'    => 'phinx/Config/',
             'vendor/robmorgan/phinx/src/Phinx/Db/'        => 'phinx/Db/',
             'vendor/robmorgan/phinx/src/Phinx/Migration/' => 'phinx/Migration/',
             'vendor/robmorgan/phinx/src/Phinx/Seed/'      => 'phinx/Seed/',

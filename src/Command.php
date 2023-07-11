@@ -11,6 +11,7 @@
 namespace think\migration;
 
 use InvalidArgumentException;
+use Phinx\Config\Config;
 use Phinx\Db\Adapter\AdapterFactory;
 
 abstract class Command extends \think\console\Command
@@ -73,6 +74,7 @@ abstract class Command extends \think\console\Command
         $table = $this->app->config->get('database.migration_table', 'migrations');
 
         $dbConfig['migration_table'] = $dbConfig['table_prefix'] . $table;
+        $dbConfig['version_order']   = Config::VERSION_ORDER_CREATION_TIME;
 
         return $dbConfig;
     }
