@@ -316,7 +316,7 @@ abstract class AbstractAdapter implements AdapterInterface
         } catch (Exception $exception) {
             throw new InvalidArgumentException(
                 'There was a problem creating the schema table: ' . $exception->getMessage(),
-                (int)$exception->getCode(),
+                (int) $exception->getCode(),
                 $exception
             );
         }
@@ -348,7 +348,7 @@ abstract class AbstractAdapter implements AdapterInterface
         /** @var \Symfony\Component\Console\Input\InputInterface|null $input */
         $input = $this->getInput();
 
-        return $input && $input->hasOption('dry-run') ? (bool)$input->getOption('dry-run') : false;
+        return $input && $input->hasOption('dry-run') ? (bool) $input->getOption('dry-run') : false;
     }
 
     /**

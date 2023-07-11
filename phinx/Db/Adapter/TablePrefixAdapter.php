@@ -381,7 +381,7 @@ class TablePrefixAdapter extends AdapterWrapper implements DirectActionInterface
      */
     public function getPrefix(): string
     {
-        return (string)$this->getOption('table_prefix');
+        return (string) $this->getOption('table_prefix');
     }
 
     /**
@@ -391,7 +391,7 @@ class TablePrefixAdapter extends AdapterWrapper implements DirectActionInterface
      */
     public function getSuffix(): string
     {
-        return (string)$this->getOption('table_suffix');
+        return (string) $this->getOption('table_suffix');
     }
 
     /**
