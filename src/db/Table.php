@@ -15,6 +15,18 @@ use Phinx\Db\Table\Index;
 
 class Table extends \Phinx\Db\Table
 {
+
+    protected function setOption($name, $value)
+    {
+        $options = $this->getOptions();
+
+        $options[$name] = $value;
+
+        $this->table->setOptions($options);
+
+        return $this;
+    }
+
     /**
      * 设置id
      * @param $id
@@ -22,8 +34,7 @@ class Table extends \Phinx\Db\Table
      */
     public function setId($id)
     {
-        $this->options['id'] = $id;
-        return $this;
+        return $this->setOption('id', $id);
     }
 
     /**
@@ -33,8 +44,7 @@ class Table extends \Phinx\Db\Table
      */
     public function setPrimaryKey($key)
     {
-        $this->options['primary_key'] = $key;
-        return $this;
+        return $this->setOption('primary_key', $key);
     }
 
     /**
@@ -44,8 +54,7 @@ class Table extends \Phinx\Db\Table
      */
     public function setEngine($engine)
     {
-        $this->options['engine'] = $engine;
-        return $this;
+        return $this->setOption('engine', $engine);
     }
 
     /**
@@ -55,8 +64,7 @@ class Table extends \Phinx\Db\Table
      */
     public function setComment($comment)
     {
-        $this->options['comment'] = $comment;
-        return $this;
+        return $this->setOption('comment', $comment);
     }
 
     /**
@@ -66,8 +74,7 @@ class Table extends \Phinx\Db\Table
      */
     public function setCollation($collation)
     {
-        $this->options['collation'] = $collation;
-        return $this;
+        return $this->setOption('collation', $collation);
     }
 
     public function addSoftDelete()
@@ -93,20 +100,20 @@ class Table extends \Phinx\Db\Table
     }
 
     /**
-     * @param string $createdAtColumnName
-     * @param string $updatedAtColumnName
-     * @return \Phinx\Db\Table|Table
+     * @param string $createdAt
+     * @param string $updatedAt
+     * @return $this
      */
-    public function addTimestamps($createdAtColumnName = 'create_time', $updatedAtColumnName = 'update_time')
+    public function addTimestamps($createdAt = 'create_time', $updatedAt = 'update_time', bool $withTimezone = false)
     {
-        return parent::addTimestamps($createdAtColumnName, $updatedAtColumnName);
+        return parent::addTimestamps($createdAt, $updatedAt, $withTimezone);
     }
 
     /**
      * @param \Phinx\Db\Table\Column|string $columnName
-     * @param null                          $type
-     * @param array                         $options
-     * @return \Phinx\Db\Table|Table
+     * @param null $type
+     * @param array $options
+     * @return $this
      */
     public function addColumn($columnName, $type = null, $options = [])
     {
@@ -121,9 +128,9 @@ class Table extends \Phinx\Db\Table
 
     /**
      * @param string $columnName
-     * @param null   $newColumnType
-     * @param array  $options
-     * @return \Phinx\Db\Table|Table
+     * @param null $newColumnType
+     * @param array $options
+     * @return $this
      */
     public function changeColumn($columnName, $newColumnType = null, $options = [])
     {

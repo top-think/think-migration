@@ -41,7 +41,14 @@ abstract class Migrate extends Command
 
         $startTime = time();
         $direction = (MigrationInterface::UP === $direction) ? MigrationInterface::UP : MigrationInterface::DOWN;
+        $migration->setMigratingUp($direction === MigrationInterface::UP);
         $migration->setAdapter($this->getAdapter());
+
+        $migration->preFlightCheck();
+
+        if (method_exists($migration, MigrationInterface::INIT)) {
+            $migration->{MigrationInterface::INIT}();
+        }
 
         // begin the transaction if the adapter supports it
         if ($this->getAdapter()->hasTransactions()) {
@@ -53,11 +60,10 @@ abstract class Migrate extends Command
             if (MigrationInterface::DOWN === $direction) {
                 // Create an instance of the ProxyAdapter so we can record all
                 // of the migration commands for reverse playback
-                /** @var ProxyAdapter $proxyAdapter */
+                /** @var \Phinx\Db\Adapter\ProxyAdapter $proxyAdapter */
                 $proxyAdapter = AdapterFactory::instance()->getWrapper('proxy', $this->getAdapter());
                 $migration->setAdapter($proxyAdapter);
-                /** @noinspection PhpUndefinedMethodInspection */
-                $migration->change();
+                $migration->{MigrationInterface::CHANGE}();
                 $proxyAdapter->executeInvertedCommands();
                 $migration->setAdapter($this->getAdapter());
             } else {
@@ -72,6 +78,8 @@ abstract class Migrate extends Command
         if ($this->getAdapter()->hasTransactions()) {
             $this->getAdapter()->commitTransaction();
         }
+
+        $migration->postFlightCheck();
 
         // Record it in the database
         $this->getAdapter()
