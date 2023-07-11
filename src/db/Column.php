@@ -167,5 +167,4 @@ class Column extends \Phinx\Db\Table\Column
     {
         return self::make($name, AdapterInterface::PHINX_TYPE_UUID);
     }
-
 }

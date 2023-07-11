@@ -27,6 +27,5 @@ class Migrator extends AbstractMigration
 
     public function preFlightCheck(): void
     {
-
     }
 }

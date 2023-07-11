@@ -389,7 +389,7 @@ abstract class PdoAdapter extends AbstractAdapter implements DirectActionInterfa
         }
 
         foreach ($rows as $version) {
-            $result[(int)$version['version']] = $version;
+            $result[(int) $version['version']] = $version;
         }
 
         return $result;
@@ -575,7 +575,7 @@ abstract class PdoAdapter extends AbstractAdapter implements DirectActionInterfa
      */
     public function castToBool($value)
     {
-        return (bool)$value ? 1 : 0;
+        return (bool) $value ? 1 : 0;
     }
 
     /**
@@ -600,14 +600,14 @@ abstract class PdoAdapter extends AbstractAdapter implements DirectActionInterfa
     protected function getDefaultValueDefinition($default, ?string $columnType = null): string
     {
         if ($default instanceof Literal) {
-            $default = (string)$default;
+            $default = (string) $default;
         } elseif (is_string($default) && strpos($default, 'CURRENT_TIMESTAMP') !== 0) {
             // Ensure a defaults of CURRENT_TIMESTAMP(3) is not quoted.
             $default = $this->getConnection()->quote($default);
         } elseif (is_bool($default)) {
             $default = $this->castToBool($default);
         } elseif ($default !== null && $columnType === static::PHINX_TYPE_BOOLEAN) {
-            $default = $this->castToBool((bool)$default);
+            $default = $this->castToBool((bool) $default);
         }
 
         return isset($default) ? " DEFAULT $default" : '';

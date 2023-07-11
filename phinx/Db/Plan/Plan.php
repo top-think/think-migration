@@ -392,7 +392,7 @@ class Plan
                 && !($action instanceof RemoveColumn)
                 && !($action instanceof RenameColumn)
             ) {
-                 continue;
+                continue;
             } elseif (isset($this->tableCreates[$action->getTable()->getName()])) {
                 continue;
             }
