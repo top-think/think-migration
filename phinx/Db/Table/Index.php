@@ -212,7 +212,7 @@ class Index
 
             // handle $options['unique']
             if (strcasecmp($option, self::UNIQUE) === 0) {
-                if ((bool)$value) {
+                if ((bool) $value) {
                     $this->setType(self::UNIQUE);
                 }
                 continue;

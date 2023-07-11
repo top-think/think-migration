@@ -15,7 +15,6 @@ use Phinx\Db\Table\Index;
 
 class Table extends \Phinx\Db\Table
 {
-
     protected function setOption($name, $value)
     {
         $options = $this->getOptions();
