@@ -24,7 +24,8 @@ class Status extends Migrate
         $this->setName('migrate:status')
              ->setDescription('Show migration status')
              ->addOption('--format', '-f', InputOption::VALUE_REQUIRED, 'The output format: text or json. Defaults to text.')
-             ->setHelp(<<<EOT
+             ->setHelp(
+                 <<<EOT
 The <info>migrate:status</info> command prints a list of all migrations, along with their current status
 
 <info>php think migrate:status</info>

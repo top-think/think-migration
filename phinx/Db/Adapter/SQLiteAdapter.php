@@ -331,7 +331,7 @@ class SQLiteAdapter extends PdoAdapter
             $defaultSchema = 'main';
         } else {
             // otherwise we search just the specified schema
-            $schemata = (array)$info['schema'];
+            $schemata = (array) $info['schema'];
             $defaultSchema = $info['schema'];
         }
 
@@ -579,16 +579,16 @@ PCRE_PATTERN;
 
             return Literal::from($str);
         } elseif (preg_match('/^[+-]?\d+$/i', $defaultBare)) {
-            $int = (int)$defaultBare;
+            $int = (int) $defaultBare;
             // integer literal
             if ($columnType === self::PHINX_TYPE_BOOLEAN && ($int === 0 || $int === 1)) {
-                return (bool)$int;
+                return (bool) $int;
             } else {
                 return $int;
             }
         } elseif (preg_match('/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i', $defaultBare)) {
             // float literal
-            return (float)$defaultBare;
+            return (float) $defaultBare;
         } elseif (preg_match('/^0x[0-9a-f]+$/i', $defaultBare)) {
             // hexadecimal literal
             return hexdec(substr($defaultBare, 2));
@@ -664,7 +664,7 @@ PCRE_PATTERN;
 
             $column->setName($columnInfo['name'])
                 // SQLite on PHP 8.1 returns int for notnull, older versions return a string
-                   ->setNull((int)$columnInfo['notnull'] !== 1)
+                   ->setNull((int) $columnInfo['notnull'] !== 1)
                    ->setDefault($default)
                    ->setType($type['name'])
                    ->setLimit($type['limit'])
@@ -851,7 +851,7 @@ PCRE_PATTERN;
                 )
             );
 
-            $foreignKeysEnabled = (bool)$this->fetchRow('PRAGMA foreign_keys')['foreign_keys'];
+            $foreignKeysEnabled = (bool) $this->fetchRow('PRAGMA foreign_keys')['foreign_keys'];
             if ($foreignKeysEnabled) {
                 $this->execute('PRAGMA foreign_keys = OFF');
             }
@@ -1137,7 +1137,7 @@ PCRE_PATTERN;
      */
     protected function resolveIndex(string $tableName, $columns): array
     {
-        $columns = array_map('strtolower', (array)$columns);
+        $columns = array_map('strtolower', (array) $columns);
         $indexes = $this->getIndexes($tableName);
         $matches = [];
 
@@ -1156,7 +1156,7 @@ PCRE_PATTERN;
      */
     public function hasIndex(string $tableName, $columns): bool
     {
-        return (bool)$this->resolveIndex($tableName, $columns);
+        return (bool) $this->resolveIndex($tableName, $columns);
     }
 
     /**
@@ -1236,11 +1236,11 @@ PCRE_PATTERN;
 
         if ($found) {
             $schema = $this->getSchemaName($tableName, true)['schema'];
-                $instructions->addPostStep(sprintf(
-                    'DROP INDEX %s%s',
-                    $schema,
-                    $this->quoteColumnName($indexName)
-                ));
+            $instructions->addPostStep(sprintf(
+                'DROP INDEX %s%s',
+                $schema,
+                $this->quoteColumnName($indexName)
+            ));
         }
 
         return $instructions;
@@ -1257,7 +1257,7 @@ PCRE_PATTERN;
             throw new InvalidArgumentException('SQLite does not support named constraints.');
         }
 
-        $columns = array_map('strtolower', (array)$columns);
+        $columns = array_map('strtolower', (array) $columns);
         $primaryKey = array_map('strtolower', $this->getPrimaryKey($tableName));
 
         if (array_diff($primaryKey, $columns) || array_diff($columns, $primaryKey)) {
@@ -1300,7 +1300,7 @@ PCRE_PATTERN;
             ) === 1;
         }
 
-        $columns = array_map('strtolower', (array)$columns);
+        $columns = array_map('strtolower', (array) $columns);
         $foreignKeys = $this->getForeignKeys($tableName);
 
         foreach ($foreignKeys as $key) {
@@ -1562,8 +1562,8 @@ PCRE_PATTERN;
             $type = $match[1];
             $typeLC = strtolower($type);
             $affinity = $match[2] ?? '';
-            $limit = isset($match[3]) && strlen($match[3]) ? (int)$match[3] : null;
-            $scale = isset($match[4]) && strlen($match[4]) ? (int)$match[4] : null;
+            $limit = isset($match[3]) && strlen($match[3]) ? (int) $match[3] : null;
+            $scale = isset($match[4]) && strlen($match[4]) ? (int) $match[4] : null;
             if (in_array($typeLC, ['tinyint', 'tinyinteger'], true) && $limit === 1) {
                 // the type is a MySQL-style boolean
                 $name = static::PHINX_TYPE_BOOLEAN;
@@ -1631,7 +1631,7 @@ PCRE_PATTERN;
     {
         $isLiteralType = $column->getType() instanceof Literal;
         if ($isLiteralType) {
-            $def = (string)$column->getType();
+            $def = (string) $column->getType();
         } else {
             $sqlType = $this->getSqlType($column->getType());
             $def = strtoupper($sqlType['name']);
