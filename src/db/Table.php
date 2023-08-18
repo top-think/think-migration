@@ -106,7 +106,24 @@ class Table extends \Phinx\Db\Table
      */
     public function addTimestamps($createdAt = 'create_time', $updatedAt = 'update_time', bool $withTimezone = false)
     {
-        return parent::addTimestamps($createdAt, $updatedAt, $withTimezone);
+        if ($createdAt) {
+            $this->addColumn($createdAt, 'timestamp', [
+                'null'     => false,
+                'default'  => 'CURRENT_TIMESTAMP',
+                'update'   => '',
+                'timezone' => $withTimezone,
+            ]);
+        }
+        if ($updatedAt) {
+            $this->addColumn($updatedAt, 'timestamp', [
+                'null'     => true,
+                'default'  => null,
+                'update'   => '',
+                'timezone' => $withTimezone,
+            ]);
+        }
+
+        return $this;
     }
 
     /**
