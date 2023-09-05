@@ -4,9 +4,8 @@ namespace think\migration;
 
 use think\helper\Arr;
 
-class MigratorProvider
+class Migrant
 {
-
     /**
      * The paths to all of the migration files.
      *
@@ -20,7 +19,7 @@ class MigratorProvider
      * @param  string $path
      * @return void
      */
-    public function path($path)
+    public function path($path): void
     {
         $this->paths = array_unique(array_merge($this->paths, [$path]));
     }
@@ -30,7 +29,7 @@ class MigratorProvider
      *
      * @return array
      */
-    public function paths()
+    public function paths(): array
     {
         return $this->paths;
     }
@@ -41,7 +40,7 @@ class MigratorProvider
      * @param  string|array  $paths
      * @return array
      */
-    public function getMigrationFiles($paths)
+    public function getMigrationFiles(string|array $paths): array
     {
         return array_keys(
             array_unique(
@@ -62,7 +61,7 @@ class MigratorProvider
      * @param  string  $path
      * @return string
      */
-    public function getMigrationName($path)
+    public function getMigrationName(string $path): string
     {
         return str_replace('.php', '', basename($path));
     }

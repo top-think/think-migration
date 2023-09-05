@@ -13,6 +13,7 @@ namespace think\migration;
 
 use Faker\Factory as FakerFactory;
 use Faker\Generator as FakerGenerator;
+use think\migration\Migrant;
 use think\migration\command\factory\Create as FactoryCreate;
 use think\migration\command\migrate\Breakpoint as MigrateBreakpoint;
 use think\migration\command\migrate\Create as MigrateCreate;
@@ -26,7 +27,7 @@ class Service extends \think\Service
 {
     public function register()
     {
-        $this->app->bind('migration.migrator', MigratorProvider::class);
+        $this->app->bind('migration.migrator', Migrant::class);
     }
 
     public function boot()

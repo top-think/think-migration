@@ -17,6 +17,7 @@ use Phinx\Migration\AbstractMigration;
 use Phinx\Migration\MigrationInterface;
 use Phinx\Util\Util;
 use think\migration\Command;
+use think\migration\Migrant;
 use think\migration\Migrator;
 
 abstract class Migrate extends Command
@@ -26,9 +27,23 @@ abstract class Migrate extends Command
      */
     protected $migrations;
 
+    /**
+     * The migrator instance.
+     *
+     * @var \think\migration\Migrant
+     */
+    protected $migrator;
+
+    public function __construct(Migrant $migrator)
+    {
+        parent::__construct();
+
+        $this->migrator = $migrator;
+    }
+
     protected function getPath()
     {
-        return $this->app->getRootPath() . 'database' . DIRECTORY_SEPARATOR . 'migrations';
+        return array_merge([$this->app->getRootPath() . 'database' . DIRECTORY_SEPARATOR . 'migrations'], $this->migrator->paths());
     }
 
     protected function executeMigration(MigrationInterface $migration, $direction = MigrationInterface::UP)
@@ -96,12 +111,8 @@ abstract class Migrate extends Command
     {
         if (null === $this->migrations) {
             // $phpFiles = glob($this->getPath() . DIRECTORY_SEPARATOR . '*.php', defined('GLOB_BRACE') ? GLOB_BRACE : 0);
-            /**
-             * @var \think\migration\MigratorProvider $migrator
-             */
-            $migrator = $this->app->get('migration.migrator');
 
-            $phpFiles = $migrator->getMigrationFiles(array_merge([$this->getPath()], $migrator->paths()));
+            $phpFiles = $this->migrator->getMigrationFiles($this->getPath());
 
             // filter the files to only get the ones that match our naming scheme
             $fileNames = [];

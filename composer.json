@@ -1,5 +1,5 @@
 {
-    "name": "topthink/think-migration",
+    "name": "lingyun/think-migration",
     "authors": [
         {
             "name": "yunwuxin",
@@ -21,12 +21,11 @@
         }
     },
     "require": {
-        "topthink/framework": "^6.0 || ^8.0",
-        "topthink/think-helper": "^3.0.3"
+        "topthink/framework": "^6.0 || ^8.0"
     },
     "minimum-stability": "dev",
     "suggest": {
-        "fzaninotto/faker": "Required to use the factory builder (^1.8)."
+        "fakerphp/faker": "Required to use the factory builde."
     },
     "require-dev": {
         "fzaninotto/faker": "^1.8"
