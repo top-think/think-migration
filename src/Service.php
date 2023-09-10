@@ -13,6 +13,7 @@ namespace think\migration;
 
 use Faker\Factory as FakerFactory;
 use Faker\Generator as FakerGenerator;
+use think\migration\Factory;
 use think\migration\Migrant;
 use think\migration\command\factory\Create as FactoryCreate;
 use think\migration\command\migrate\Breakpoint as MigrateBreakpoint;

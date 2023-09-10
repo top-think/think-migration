@@ -11,7 +11,10 @@
         "psr-4": {
             "Phinx\\": "phinx/src/Phinx",
             "think\\migration\\": "src"
-        }
+        },
+        "files": [
+            "src/helper.php"
+        ]
     },
     "extra": {
         "think": {
@@ -28,6 +31,6 @@
         "fakerphp/faker": "Required to use the factory builde."
     },
     "require-dev": {
-        "fzaninotto/faker": "^1.8"
+        "fakerphp/faker": "^1.19"
     }
 }
