@@ -117,6 +117,15 @@ class UserSeeder extends Seeder
     }
 }
 ```
+### 运行 Seeders
+
+您可以使用  `php think seed:run` 来填充数据库。默认情况下将运行 `database/seeds` 目录下所有Seeder类,可以使用 `--seed` 选项来指定一个特定的 seeder 类：
+```
+php think seed:run
+
+php think seed:run --seed=UserSeeder
+```
+
 ### 使用模型工厂
 
 使用 [模型工厂](#模型工厂) 轻松地生成大量数据库数据。
