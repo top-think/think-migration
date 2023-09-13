@@ -122,7 +122,7 @@ class SQLiteAdapter extends PdoAdapter
     /**
      * @var string
      */
-    protected $suffix = '.sqlite3';
+    protected $suffix = '';
 
     /**
      * Indicates whether the database library version is at least the specified version
