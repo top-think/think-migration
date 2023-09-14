@@ -59,6 +59,7 @@ abstract class Command extends \think\console\Command
                 'pass'         => $config['password'],
                 'port'         => $config['hostport'],
                 'charset'      => $config['charset'],
+                'suffix'       => $config['suffix'] ?? '',
                 'table_prefix' => $config['prefix'],
             ];
         } else {
@@ -70,6 +71,7 @@ abstract class Command extends \think\console\Command
                 'pass'         => explode(',', $config['password'])[0],
                 'port'         => explode(',', $config['hostport'])[0],
                 'charset'      => explode(',', $config['charset'])[0],
+                'suffix'       => explode(',', $config['suffix'] ?? '')[0],
                 'table_prefix' => explode(',', $config['prefix'])[0],
             ];
         }
