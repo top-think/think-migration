@@ -90,7 +90,7 @@ class Util
     {
         $matches = [];
         preg_match('/^[0-9]+/', basename($fileName), $matches);
-        $value = (int)($matches[0] ?? null);
+        $value = (int) ($matches[0] ?? null);
         if (!$value) {
             throw new RuntimeException(sprintf('Cannot get a valid version from filename `%s`', $fileName));
         }
@@ -172,7 +172,7 @@ class Util
      */
     public static function isValidPhinxClassName(string $className): bool
     {
-        return (bool)preg_match(static::CLASS_NAME_PATTERN, $className);
+        return (bool) preg_match(static::CLASS_NAME_PATTERN, $className);
     }
 
     /**
@@ -183,8 +183,8 @@ class Util
      */
     public static function isValidMigrationFileName(string $fileName): bool
     {
-        return (bool)preg_match(static::MIGRATION_FILE_NAME_PATTERN, $fileName)
-            || (bool)preg_match(static::MIGRATION_FILE_NAME_NO_NAME_PATTERN, $fileName);
+        return (bool) preg_match(static::MIGRATION_FILE_NAME_PATTERN, $fileName)
+            || (bool) preg_match(static::MIGRATION_FILE_NAME_NO_NAME_PATTERN, $fileName);
     }
 
     /**
@@ -195,7 +195,7 @@ class Util
      */
     public static function isValidSeedFileName(string $fileName): bool
     {
-        return (bool)preg_match(static::SEED_FILE_NAME_PATTERN, $fileName);
+        return (bool) preg_match(static::SEED_FILE_NAME_PATTERN, $fileName);
     }
 
     /**
@@ -272,7 +272,7 @@ class Util
     {
         $files = static::globAll(array_map(function ($path) {
             return $path . DIRECTORY_SEPARATOR . '*.php';
-        }, (array)$paths));
+        }, (array) $paths));
         // glob() can return the same file multiple times
         // This will cause the migration to fail with a
         // false assumption of duplicate migrations
