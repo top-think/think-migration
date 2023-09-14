@@ -99,8 +99,7 @@ class FactoryBuilder
         array $afterMaking,
         array $afterCreating,
         Faker $faker
-    )
-    {
+    ) {
         $this->name          = $name;
         $this->class         = $class;
         $this->faker         = $faker;
