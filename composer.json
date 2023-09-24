@@ -1,5 +1,5 @@
 {
-    "name": "topthink/think-migration",
+    "name": "lingyun/think-migration",
     "authors": [
         {
             "name": "yunwuxin",
@@ -11,7 +11,10 @@
         "psr-4": {
             "Phinx\\": "phinx/src/Phinx",
             "think\\migration\\": "src"
-        }
+        },
+        "files": [
+            "src/helper.php"
+        ]
     },
     "extra": {
         "think": {
@@ -22,13 +25,17 @@
     },
     "require": {
         "topthink/framework": "^6.0 || ^8.0",
-        "topthink/think-helper": "^3.0.3"
+        "fakerphp/faker": "^1.19"
     },
-    "minimum-stability": "dev",
     "suggest": {
-        "fzaninotto/faker": "Required to use the factory builder (^1.8)."
+        "fakerphp/faker": "Required to use the factory builde."
     },
     "require-dev": {
-        "fzaninotto/faker": "^1.8"
-    }
+        "fakerphp/faker": "^1.19"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

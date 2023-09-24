@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Phinx
  *
@@ -26,6 +27,7 @@
  * @package    Phinx
  * @subpackage Phinx\Util
  */
+
 namespace Phinx\Util;
 
 class Util
@@ -59,7 +61,7 @@ class Util
     /**
      * Gets an array of all the existing migration class names.
      *
-     * @return string
+     * @return array
      */
     public static function getExistingMigrationClassNames($path)
     {
