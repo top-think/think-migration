@@ -24,13 +24,18 @@
         }
     },
     "require": {
-        "topthink/framework": "^6.0 || ^8.0"
+        "topthink/framework": "^6.0 || ^8.0",
+        "fakerphp/faker": "^1.19"
     },
-    "minimum-stability": "dev",
     "suggest": {
         "fakerphp/faker": "Required to use the factory builde."
     },
     "require-dev": {
         "fakerphp/faker": "^1.19"
-    }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
