@@ -12,6 +12,7 @@ namespace think\migration\command\seed;
 use Phinx\Util\Util;
 use think\console\Input;
 use think\console\input\Argument as InputArgument;
+use think\console\input\Option as InputOption;
 use think\console\Output;
 use think\migration\command\Seed;
 
@@ -26,6 +27,7 @@ class Create extends Seed
             ->setDescription('Create a new database seeder')
             ->addArgument('name', InputArgument::REQUIRED, 'What is the name of the seeder?')
             ->setHelp(sprintf('%sCreates a new database seeder%s', PHP_EOL, PHP_EOL));
+        $this->addOption('connection', 'c', InputOption::VALUE_REQUIRED, 'The database connection to use.');
     }
 
     /**

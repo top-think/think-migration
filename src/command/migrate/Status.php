@@ -31,6 +31,7 @@ The <info>migrate:status</info> command prints a list of all migrations, along w
 <info>php think migrate:status -f json</info>
 EOT
              );
+        $this->addOption('connection', 'c', InputOption::VALUE_REQUIRED, 'The database connection to use.');
     }
 
     /**

@@ -34,6 +34,7 @@ You cannot specify un-migrated targets
 <info>php think migrate:breakpoint -r</info>
 EOT
              );
+        $this->addOption('connection', 'c', InputOption::VALUE_REQUIRED, 'The database connection to use.');
     }
 
     protected function execute(Input $input, Output $output)

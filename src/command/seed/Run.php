@@ -34,6 +34,7 @@ class Run extends Seed
 
 EOT
              );
+        $this->addOption('connection', 'c', InputOption::VALUE_REQUIRED, 'The database connection to use.');
     }
 
     /**

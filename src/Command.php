@@ -46,7 +46,8 @@ abstract class Command extends \think\console\Command
      */
     protected function getDbConfig(): array
     {
-        $default = $this->app->config->get('database.default');
+        // 获取连接名称，默认为默认连接
+        $default = $this->input->getOption('connection') ?? $this->app->config->get('database.default');
 
         $config = $this->app->config->get("database.connections.{$default}");
 

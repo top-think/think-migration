@@ -36,6 +36,7 @@ The <info>migrate:run</info> command runs all available migrations, optionally u
 
 EOT
             );
+        $this->addOption('connection', 'c', InputOption::VALUE_REQUIRED, 'The database connection to use.');
     }
 
     /**

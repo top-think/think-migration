@@ -14,6 +14,7 @@ use RuntimeException;
 use think\console\Command;
 use think\console\Input;
 use think\console\input\Argument as InputArgument;
+use think\console\input\Option as InputOption;
 use think\console\Output;
 use think\migration\Creator;
 
@@ -29,6 +30,7 @@ class Create extends Command
             ->setDescription('Create a new migration')
             ->addArgument('name', InputArgument::REQUIRED, 'What is the name of the migration?')
             ->setHelp(sprintf('%sCreates a new database migration%s', PHP_EOL, PHP_EOL));
+        $this->addOption('connection', 'c', InputOption::VALUE_REQUIRED, 'The database connection to use.');
     }
 
     /**

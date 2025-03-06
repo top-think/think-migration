@@ -37,6 +37,7 @@ The <info>migrate:rollback</info> command reverts the last migration, or optiona
 
 EOT
              );
+        $this->addOption('connection', 'c', InputOption::VALUE_REQUIRED, 'The database connection to use.');
     }
 
     /**
