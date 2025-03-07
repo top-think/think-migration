@@ -770,8 +770,8 @@ class Column
      * Utility method that maps an array of column options to this objects methods.
      *
      * @param array<string, mixed> $options Options
-     * @throws \RuntimeException
      * @return $this
+     * @throws \RuntimeException
      */
     public function setOptions(array $options)
     {
@@ -793,6 +793,9 @@ class Column
             }
 
             $method = 'set' . ucfirst($option);
+            if ($method == 'setLimit') {
+                $value = (int)$value;
+            }
             $this->$method($value);
         }
 
