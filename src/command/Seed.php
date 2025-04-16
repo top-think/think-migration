@@ -13,6 +13,7 @@ namespace think\migration\command;
 
 use InvalidArgumentException;
 use Phinx\Seed\AbstractSeed;
+use Phinx\Seed\SeedInterface;
 use Phinx\Util\Util;
 use think\migration\Command;
 use think\migration\Seeder;
@@ -68,6 +69,50 @@ abstract class Seed extends Command
             $this->seeds = $seeds;
         }
 
+        $this->seeds = $this->orderSeedsByDependencies($this->seeds);
         return $this->seeds;
+    }
+
+    /**
+     * Order seeds by dependencies
+     *
+     * @param \Phinx\Seed\SeedInterface[] $seeds Seeds
+     * @return \Phinx\Seed\SeedInterface[]
+     */
+    protected function orderSeedsByDependencies(array $seeds): array
+    {
+        $orderedSeeds = [];
+        foreach ($seeds as $seed) {
+            $orderedSeeds[get_class($seed)] = $seed;
+            $dependencies = $this->getSeedDependenciesInstances($seed);
+            if (!empty($dependencies)) {
+                $orderedSeeds = array_merge($this->orderSeedsByDependencies($dependencies), $orderedSeeds);
+            }
+        }
+
+        return $orderedSeeds;
+    }
+
+    /**
+     * Get seed dependencies instances from seed dependency array
+     *
+     * @param \Phinx\Seed\SeedInterface $seed Seed
+     * @return \Phinx\Seed\SeedInterface[]
+     */
+    protected function getSeedDependenciesInstances(SeedInterface $seed): array
+    {
+        $dependenciesInstances = [];
+        $dependencies = $seed->getDependencies();
+        if (!empty($dependencies)) {
+            foreach ($dependencies as $dependency) {
+                foreach ($this->seeds as $seed) {
+                    if (get_class($seed) === $dependency) {
+                        $dependenciesInstances[get_class($seed)] = $seed;
+                    }
+                }
+            }
+        }
+
+        return $dependenciesInstances;
     }
 }
