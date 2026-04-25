@@ -47,7 +47,14 @@ abstract class Command extends \think\console\Command
     protected function getDbConfig(): array
     {
         // 获取连接名称，默认为默认连接
-        $default = $this->input->getOption('connection') ?? $this->app->config->get('database.default');
+        try {
+            $default = $this->input->getOption('connection');
+        } catch (InvalidArgumentException) {
+            $default = null;
+        }
+        if ($default === null || $default === '') {
+            $default = $this->app->config->get('database.default');
+        }
 
         $config = $this->app->config->get("database.connections.{$default}");
 
@@ -55,6 +62,7 @@ abstract class Command extends \think\console\Command
             $dbConfig = [
                 'adapter'      => $config['type'],
                 'host'         => $config['hostname'],
+                'unix_socket'  => $config['socket'] ?? '',
                 'name'         => $config['database'],
                 'user'         => $config['username'],
                 'pass'         => $config['password'],
@@ -67,6 +75,7 @@ abstract class Command extends \think\console\Command
             $dbConfig = [
                 'adapter'      => explode(',', $config['type'])[0],
                 'host'         => explode(',', $config['hostname'])[0],
+                'unix_socket'  => explode(',', $config['socket'] ?? '')[0],
                 'name'         => explode(',', $config['database'])[0],
                 'user'         => explode(',', $config['username'])[0],
                 'pass'         => explode(',', $config['password'])[0],
